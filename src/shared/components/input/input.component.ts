@@ -19,8 +19,6 @@ export class InputComponent {
   @Input() icon?: any;
   @Input() iconPosition: 'left' | 'right' = 'left' ;
 
-  public isFocused: boolean = false;
-
   constructor() {}
 
   get isIconLeft(): boolean {
@@ -29,13 +27,5 @@ export class InputComponent {
 
   get isIconRight(): boolean {
     return !!this.icon && this.iconPosition === 'right';
-  }
-
-  onFocus(): void {
-    this.isFocused = true;
-  }
-
-  onBlur(): void {
-    this.isFocused = false;
   }
 }
