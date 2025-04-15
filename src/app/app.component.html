@@ -6,12 +6,31 @@
     type="text"
   />
 
-  <app-input
-    label="Telefone"
-    placeholder="Digite seu telefone"
-    [required]="true"
-    type="number"
-  />
+  <div class="flex gap-4 w-full">
+    <app-input
+      label="CPF"
+      placeholder="Digite seu CPF"
+      [required]="true"
+      type="text"
+      mask="000.000.000-00"
+    />
+
+    <app-input
+      label="Telefone"
+      placeholder="Digite seu telefone"
+      [required]="true"
+      type="text"
+      mask="(00) 00000-0000"
+    />
+
+    <app-input
+      label="Placa"
+      placeholder="Digite a placa do seu carro"
+      [required]="false"
+      type="text"
+      mask="AAA-0A00"
+    />
+  </div>
 
   <app-input
     label="Senha"

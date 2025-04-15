@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { ButtonComponent } from '../components/button/button.component';
-import { InputComponent } from "../components/input/input.component";
+import { ButtonComponent } from '../shared/components/button/button.component';
+import { InputComponent } from "../shared/components/input/input.component";
 
 @Component({
   selector: 'app-root',
