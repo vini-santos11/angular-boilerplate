@@ -8,7 +8,17 @@
   --color-error: #FF3D00;
   --color-success: #00FF3D;
   --color-warning: #FF9A00;
+}
 
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+  appearance: textfield;
+  -moz-appearance: textfield;
 }
 
 
