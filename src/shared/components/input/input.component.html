@@ -3,10 +3,26 @@
     {{ label }} <span *ngIf="required" class="text-red-500">*</span>
   </label>
 
-  <input
-    class="px-3 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-1 focus:ring-blue-500 focus:border-blue-500 border-gray-300 placeholder-gray-400"
-    [attr.type]="type"
-    [attr.placeholder]="placeholder"
-    [mask]="mask"
-  />
+  <div
+    class="flex items-center border border-gray-300 rounded-lg bg-white p-2 shadow-sm focus-within:border-primary focus-within:ring-1 focus-within:ring-primary"
+  >
+    <ng-container *ngIf="isIconLeft">
+      <lucide-icon class="text-gray-300 mr-1" [img]="icon" />
+      <span class="text-gray-300 select-none mr-1">|</span>
+    </ng-container>
+
+    <input
+      (focus)="onFocus()"
+      (blur)="onBlur()"
+      class="flex-1 bg-transparent focus:outline-none text-sm text-gray-900 placeholder-gray-400"
+      [attr.type]="type"
+      [attr.placeholder]="placeholder"
+      [mask]="mask"
+    />
+
+    <ng-container *ngIf="isIconRight">
+      <span class="text-gray-300 select-none ml-1">|</span>
+      <lucide-icon class="text-gray-300 ml-1" [img]="icon" />
+    </ng-container>
+  </div>
 </div>
