@@ -10,4 +10,6 @@ import { Component, Input } from '@angular/core';
 export class InputComponent {
   @Input() label: string = '';
   @Input() required: boolean = false;
+  @Input() type: string = 'text';
+  @Input() placeholder: string = '';
 }
