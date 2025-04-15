@@ -35,10 +35,21 @@
     />
   </div>
 
-  <app-input
-    label="Senha"
-    placeholder="Digite sua senha"
-    [required]="true"
-    type="password"
-  />
+  <div class="flex gap-4">
+    <app-input
+      class="w-full"
+      label="Senha"
+      placeholder="Digite sua senha"
+      [required]="true"
+      type="password"
+    />
+
+    <app-input
+      class="w-full"
+      label="Confirmar Senha"
+      placeholder="Confirme sua senha"
+      [required]="true"
+      type="password"
+    />
+  </div>
 </div>

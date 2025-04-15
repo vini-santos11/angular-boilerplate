@@ -17,6 +17,11 @@ export class MaskDirective {
   @HostListener('input', ['$event'])
   onInput(event: Event): void {
     const input = this.el.nativeElement;
+
+    if (!this.mask || this.mask.length === 0) {
+      return;
+    }
+
     const raw = input.value.replace(/[^a-zA-Z0-9]/g, '');
 
     let masked = '';
