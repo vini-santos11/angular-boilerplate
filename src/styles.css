@@ -2,7 +2,6 @@
 
 
 @theme {
-
   --color-primary: #7E00FE;
   --color-secondary: #00BFFF;
   --color-error: #FF3D00;
@@ -19,6 +18,10 @@ input::-webkit-inner-spin-button {
 input[type=number] {
   appearance: textfield;
   -moz-appearance: textfield;
+}
+
+body {
+  font-family: 'DM Sans', sans-serif;
 }
 
 
