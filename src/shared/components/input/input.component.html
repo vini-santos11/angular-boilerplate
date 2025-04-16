@@ -61,4 +61,10 @@
       <lucide-icon class="text-gray-300 ml-1" [img]="icon" />
     </ng-container>
   </div>
+  <span
+    *ngIf="control?.invalid && (control?.touched || control?.dirty)"
+    class="text-sm text-red-500"
+  >
+    {{ getErrorMessage() }}
+  </span>
 </div>

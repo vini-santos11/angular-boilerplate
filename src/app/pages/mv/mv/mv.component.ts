@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { LockKeyhole, LucideAngularModule, Mail, Phone, Signature, User, Wifi } from 'lucide-angular';
 import { SwitchComponent } from '../../../../shared/components/switch/switch.component';
@@ -14,8 +14,8 @@ import { ButtonComponent } from '../../../../shared/components/button/button.com
 })
 export class MvComponent {
   public form = new FormGroup({
-    name: new FormControl(''),
-    email: new FormControl(''),
+    name: new FormControl('', Validators.required),
+    email: new FormControl('', Validators.email),
     document: new FormControl(''),
     phone: new FormControl(''),
     password: new FormControl(''),
@@ -29,4 +29,9 @@ export class MvComponent {
   readonly User = User;
   readonly Signature = Signature;
   readonly Wifi=Wifi;
+
+  send() {
+    console.log(this.form.valid);
+    console.log(this.form.value);
+  }
 }

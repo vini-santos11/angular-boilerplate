@@ -1,21 +1,21 @@
 import { CommonModule } from '@angular/common';
-import { Component, ElementRef, forwardRef, Input, ViewChild } from '@angular/core';
+import { Component, ElementRef, forwardRef, inject, Input, Optional, Self, ViewChild } from '@angular/core';
 import { MaskDirective } from '../../directives/mask.directive';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/forms';
+import { AbstractControl, ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR, NgControl, ReactiveFormsModule } from '@angular/forms';
 import { Eye, EyeOff, LucideAngularModule } from 'lucide-angular';
 
+export const INPUT_VALUE_ACCESSOR: any = {
+  provide: NG_VALUE_ACCESSOR,
+  useExisting: forwardRef(() => InputComponent),
+  multi: true
+};
 @Component({
   selector: 'app-input',
+  standalone: true,
   imports: [CommonModule, MaskDirective, ReactiveFormsModule, LucideAngularModule],
   templateUrl: './input.component.html',
   styleUrl: './input.component.css',
-  providers: [
-    {
-      provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => InputComponent),
-      multi: true
-    }
-  ]
+  providers: [INPUT_VALUE_ACCESSOR]
 })
 export class InputComponent implements ControlValueAccessor {
   @ViewChild('inputRef') inputRef!: ElementRef<HTMLInputElement>;
@@ -27,6 +27,7 @@ export class InputComponent implements ControlValueAccessor {
   @Input() icon?: any;
   @Input() disabled: boolean = false;
   @Input() iconPosition: 'left' | 'right' = 'left' ;
+  @Input() control!: AbstractControl | FormControl | null;
   public value: string = '';
 
   public showPassword = false;
@@ -35,8 +36,7 @@ export class InputComponent implements ControlValueAccessor {
   readonly Eye = Eye;
   readonly EyeOff = EyeOff;
 
-  constructor() {}
-
+  constructor(){}
   onChange: (_value: string) => void = () => {};
   onTouched: () => void = () => {};
 
@@ -50,6 +50,29 @@ export class InputComponent implements ControlValueAccessor {
 
   get isIconRight(): boolean {
     return !!this.icon && this.iconPosition === 'right';
+  }
+
+  getErrorMessage(): string {
+    const ctrl = this.control;
+    if (!ctrl || !ctrl.errors) return '';
+
+    if (ctrl.errors['required']) {
+      return 'Campo obrigatório.';
+    }
+
+    if (ctrl.errors['minlength']) {
+      return `Mínimo de ${ctrl.errors['minlength'].requiredLength} caracteres.`;
+    }
+
+    if (ctrl.errors['maxlength']) {
+      return `Máximo de ${ctrl.errors['maxlength'].requiredLength} caracteres.`;
+    }
+
+    if (ctrl.errors['email']) {
+      return 'E-mail inválido.';
+    }
+
+    return 'Campo inválido.';
   }
 
   togglePassword() {
