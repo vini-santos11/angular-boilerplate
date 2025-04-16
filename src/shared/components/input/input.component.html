@@ -1,7 +1,21 @@
 <div class="flex flex-col gap-1">
-  <label *ngIf="label" class="text-sm text-gray-800 font-bold">
-    {{ label }} <span *ngIf="required" class="text-red-500">*</span>
-  </label>
+  <div class="flex flex-row justify-between">
+    <label *ngIf="label" class="text-sm text-gray-800 font-bold">
+      {{ label }} <span *ngIf="required" class="text-red-500">*</span>
+    </label>
+
+    <div
+      *ngIf="initialType === 'password'"
+      class="cursor-pointer flex"
+      (click)="togglePassword()"
+    >
+      <lucide-icon
+        class="text-primary mr-1"
+        [img]="showPassword ? Eye : EyeOff"
+        size="16"
+      />
+    </div>
+  </div>
 
   <div
     class="flex items-center border border-gray-300 rounded-lg bg-white p-2 shadow-sm focus-within:border-primary focus-within:ring-1 focus-within:ring-primary"
