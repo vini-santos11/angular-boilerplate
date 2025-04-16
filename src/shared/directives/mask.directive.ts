@@ -47,10 +47,10 @@ export class MaskDirective {
       }
     }
 
-    if (raw.length === 0) {
-      input.value = '';
-    } else {
-      requestAnimationFrame(() => input.setRangeText(masked, 0, input.value.length, 'end'));
-    }
+    requestAnimationFrame(() => {
+      input.setRangeText(masked, 0, input.value.length, 'end');
+      const custom = new CustomEvent('maskedInput', { detail: masked });
+      input.dispatchEvent(custom);
+    });
   }
 }

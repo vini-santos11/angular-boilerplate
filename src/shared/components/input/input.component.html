@@ -39,6 +39,7 @@
     </ng-container>
 
     <input
+      #inputRef
       class="flex-1 focus:outline-none text-sm text-gray-900 placeholder-gray-400"
       [ngClass]="{
         'bg-transparent': !disabled,
@@ -49,6 +50,10 @@
       [attr.placeholder]="placeholder"
       [mask]="mask"
       [disabled]="disabled"
+      [value]="value"
+      (maskedInput)="onMaskedInput($event)"
+      (input)="onInput($event)"
+      (blur)="onBlur()"
     />
 
     <ng-container *ngIf="isIconRight">

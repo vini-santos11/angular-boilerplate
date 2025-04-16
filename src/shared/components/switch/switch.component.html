@@ -20,6 +20,7 @@
 
   <button
     role="switch"
+    [attr.aria-disabled]="disabled"
     [attr.aria-checked]="value"
     (click)="toggle()"
     [class.opacity-50]="disabled"
