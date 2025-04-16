@@ -1,24 +1,26 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
+import { LucideAngularModule } from 'lucide-angular';
+
+
 
 @Component({
   selector: 'app-button',
-  imports: [CommonModule],
+  imports: [CommonModule, LucideAngularModule],
   templateUrl: './button.component.html',
   styleUrl: './button.component.css'
 })
 export class ButtonComponent {
 
 
-  @Input() text : string = 'Button';
+  @Input() text : string | undefined;
   @Input() color : 'primary' | 'secondary' = 'primary';
   @Input() size : 'small' | 'medium' | 'large' | 'full' = 'medium';
   @Input() variant : 'filled' | 'outlined' = 'filled';
 
 
-  @Input() icon?: string; 
-  @Input() iconPosition: 'left' | 'right' = 'left';
-  
+  @Input() icon?: any;
+  @Input() iconPosition: 'left' | 'right' = 'left' ;
 
 
 
