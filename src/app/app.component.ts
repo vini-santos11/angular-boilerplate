@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ButtonComponent } from '../shared/components/button/button.component';
 import { InputComponent } from "../shared/components/input/input.component";
-import { LucideAngularModule, LockKeyhole, Mail } from 'lucide-angular';
+import { LucideAngularModule, LockKeyhole, Mail, Phone, User, Signature } from 'lucide-angular';
 
 @Component({
   selector: 'app-root',
@@ -14,4 +14,7 @@ export class AppComponent {
 
   readonly LockKeyhole = LockKeyhole;
   readonly Mail = Mail;
+  readonly Phone = Phone;
+  readonly User = User;
+  readonly Signature = Signature;
 }

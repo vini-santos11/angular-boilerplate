@@ -17,6 +17,7 @@ export class InputComponent {
   @Input() placeholder: string = '';
   @Input() mask: string = '';
   @Input() icon?: any;
+  @Input() disabled: boolean = false;
   @Input() iconPosition: 'left' | 'right' = 'left' ;
 
   public showPassword = false;
