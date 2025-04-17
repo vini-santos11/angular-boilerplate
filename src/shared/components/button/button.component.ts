@@ -39,7 +39,6 @@ export class ButtonComponent {
     }
   }
 
-
   get styleClass(): string {
     switch (this.mode) {
       case 'icon':
@@ -91,7 +90,6 @@ export class ButtonComponent {
         return 20;
     }
   }
-
 
   get combinedClasses(): string {
     return `${this.variantClass} ${this.styleClass} ${this.sizeClass}`;

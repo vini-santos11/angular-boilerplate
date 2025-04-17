@@ -94,12 +94,13 @@
     />
   </div>
 
-  <!-- <button type="submit" class="bg-amber-600">Submit</button> -->
+  <div class="flex gap-4 mt-3 justify-end items-end">
+    <app-button
+      type="submit"
+      variant="filled"
+      mode="textAndIcon"
+      text="{{ 'submit' | translate }}"
+      [icon]="MousePointer2"
+    />
+  </div>
 </form>
-
-<p>{{ form.value.name }}</p>
-<p>{{ form.value.email }}</p>
-<p>{{ form.value.document }}</p>
-<p>{{ form.value.phone }}</p>
-<p>{{ form.value.password }}</p>
-<p>{{ form.value.confirmPassword }}</p>
