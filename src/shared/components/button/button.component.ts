@@ -2,8 +2,6 @@ import { CommonModule } from '@angular/common';
 import { Component, Input } from '@angular/core';
 import { LucideAngularModule } from 'lucide-angular';
 
-
-
 @Component({
   selector: 'app-button',
   imports: [CommonModule, LucideAngularModule],
@@ -12,39 +10,45 @@ import { LucideAngularModule } from 'lucide-angular';
 })
 export class ButtonComponent {
 
-
   @Input() text : string | undefined;
   @Input() color : 'primary' | 'secondary' = 'primary';
   @Input() size : 'small' | 'medium' | 'large' | 'full' = 'medium';
-  @Input() variant : 'filled' | 'outlined' = 'filled';
-
-
+  @Input() variant : 'filled' | 'outlined' | 'icon' = 'filled';
   @Input() icon?: any;
-  @Input() iconPosition: 'left' | 'right' = 'left' ;
+  @Input() iconPosition: 'left' | 'right' = 'left';
+  @Input() type : 'button' | 'submit' | 'reset' = 'button';
 
+  get buttonStyle(): string {
+    switch (this.variant) {
+      case 'filled':
+        switch (this.color) {
+          case 'primary':
+            return 'bg-primary text-white hover:bg-primary-dark';
+          case 'secondary':
+            return 'bg-secondary text-white hover:bg-secondary-dark';
+        }
+        break;
 
+      case 'outlined':
+        switch (this.color) {
+          case 'primary':
+            return 'bg-transparent border border-primary text-primary hover:bg-primary-light text-black';
+          case 'secondary':
+            return 'bg-transparent border border-secondary text-secondary hover:bg-secondary-light text-black';
+        }
+        break;
 
-
-  get buttonStyle() : string {
-
-    if(this.variant === 'filled') {
-
-      if(this.color === 'primary') return 'bg-primary text-white hover:bg-primary-dark';
-      if(this.color === 'secondary') return 'bg-secondary text-white hover:bg-secondary-dark';
+      case 'icon':
+        switch (this.color) {
+          case 'primary':
+            return 'bg-transparent hover:cursor-pointer hover:text-primary text-gray-300';
+          case 'secondary':
+            return 'bg-transparent hover:cursor-pointer hover:text-secondary text-gray-300';
+        }
+        break;
     }
-
-    if(this.variant === 'outlined') {
-
-      if(this.color === 'primary') return 'bg-transparent border border-primary text-primary hover:bg-primary-light text-black';
-      if(this.color === 'secondary') return 'bg-transparent border border-secondary text-secondary hover:bg-secondary-light text-black';
-    }
-
-
     return 'bg-primary text-white hover:bg-primary-dark';
-
-
   }
-
 
   get buttonSize() : string {
     switch (this.size) {
@@ -60,16 +64,6 @@ export class ButtonComponent {
         return 'px-4 py-2 text-base ';
     }
   }
-
-
-
-
-
-
-
-
-
-
 }
 
 
