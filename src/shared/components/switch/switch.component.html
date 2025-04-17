@@ -42,3 +42,9 @@
     ></span>
   </button>
 </div>
+<span
+  *ngIf="control?.invalid && (control?.touched || control?.dirty)"
+  class="text-sm text-red-500"
+>
+  {{ getErrorMessage() }}
+</span>

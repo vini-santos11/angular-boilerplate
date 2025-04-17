@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { AbstractControl, ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-switch',
@@ -18,11 +19,14 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 export class SwitchComponent implements ControlValueAccessor {
   @Input() label : string = '';
   @Input() labelPosition: 'left' | 'right' | 'top' | 'bottom' = 'top';
+  @Input() control!: AbstractControl | FormControl | null;
   @Input() disabled: boolean = false;
 
   value: boolean = false;
 
   @Output() valueChange: EventEmitter<boolean> = new EventEmitter<boolean>();
+
+  constructor(private translate: TranslateService) {}
 
   onChange = (value: boolean) => {};
   onTouched = () => {};
@@ -33,6 +37,13 @@ export class SwitchComponent implements ControlValueAccessor {
     this.onChange(this.value);
     this.onTouched();
     this.valueChange.emit(this.value);
+  }
+
+  getErrorMessage(): string {
+    const ctrl = this.control;
+    if (!ctrl || !ctrl.errors) return '';
+
+    return this.translate.instant('required_field');
   }
 
   writeValue(value: boolean): void {

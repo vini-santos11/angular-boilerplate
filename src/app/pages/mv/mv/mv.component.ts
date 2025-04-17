@@ -23,7 +23,7 @@ export class MvComponent {
     phone: new FormControl(''),
     password: new FormControl(''),
     confirmPassword: new FormControl(''),
-    active: new FormControl(false),
+    active: new FormControl(false, Validators.requiredTrue),
   });
 
   readonly LockKeyhole = LockKeyhole;
