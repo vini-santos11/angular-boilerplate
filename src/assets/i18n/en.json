@@ -19,5 +19,11 @@
   "document": "Document",
   "password": "Password",
   "confirm_password": "Confirm Password",
-  "active": "Active"
+  "active": "Active",
+  "options": "Options",
+  "options_placeholder": "Select an option",
+  "search": "Search",
+  "selected": "Selected:",
+  "item": "item",
+  "items": "items"
 }

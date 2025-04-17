@@ -1,0 +1,118 @@
+<div
+  class="relative w-full flex flex-col gap-1"
+  (click)="onInternalClick($event)"
+>
+  <!-- Label -->
+  <div class="flex flex-row justify-between">
+    <label
+      *ngIf="label"
+      class="text-sm font-bold"
+      [ngClass]="{
+        'text-gray-400': disabled,
+        'text-gray-800': !disabled,
+        'cursor-not-allowed': disabled
+      }"
+    >
+      {{ label }}
+      <span *ngIf="required" class="text-red-500">*</span>
+    </label>
+  </div>
+
+  <!-- Campo principal (clicável) -->
+  <div
+    class="flex items-center border rounded-lg p-2 shadow-sm min-h-[2.5rem] cursor-pointer transition-all duration-200 ease-in-out focus:outline-none"
+    [ngClass]="{
+      'bg-white': !disabled,
+      'bg-gray-200': disabled,
+      'cursor-not-allowed': disabled,
+      'border-primary ring-1 ring-primary': isOpen(),
+      'border-gray-300': !isOpen()
+    }"
+    (click)="toggleDropdown()"
+    tabindex="0"
+  >
+    <!-- Single -->
+    <ng-container *ngIf="selectionMode === 'single'">
+      <span class="text-sm text-gray-400 placeholder-gray-400">
+        {{ getSingleLabel() }}
+      </span>
+    </ng-container>
+
+    <!-- Multiple -->
+    <ng-container *ngIf="selectionMode === 'multiple'">
+      <span class="text-sm text-gray-400 placeholder-gray-400">
+        {{ "selected" | translate }} {{ getMultipleSelectedList().length }}
+        {{ "item" | translate
+        }}{{ getMultipleSelectedList().length !== 1 ? "s" : "" }}
+      </span>
+    </ng-container>
+
+    <!-- Ícone seta -->
+    <lucide-icon
+      [name]="isOpen() ? ChevronUp : ChevronDown"
+      class="ml-auto text-gray-400"
+      size="18"
+    />
+  </div>
+
+  <!-- Tags dos múltiplos selecionados -->
+  <div
+    *ngIf="selectionMode === 'multiple' && isMultipleSelected()"
+    class="flex flex-wrap gap-2 mt-1 w-full"
+  >
+    <span
+      class="flex items-center bg-blue-100 text-blue-800 text-sm px-2 py-1 rounded-full max-w-full break-all"
+      *ngFor="let item of getMultipleSelectedList(); let i = index"
+    >
+      {{ getOptionLabel(item) }}
+      <button
+        class="ml-1 text-xs text-blue-500 hover:text-red-500"
+        (click)="deselectItem(item); $event.stopPropagation()"
+        type="button"
+      >
+        ✕
+      </button>
+    </span>
+  </div>
+
+  <!-- Campo de pesquisa + Lista de opções -->
+  <div
+    *ngIf="isOpen()"
+    class="absolute top-full left-0 mt-1 w-full bg-white border border-gray-300 rounded-lg z-10 shadow-lg"
+  >
+    <!-- Barra de pesquisa -->
+    <div class="flex items-center px-3 py-2 border-b border-gray-200">
+      <lucide-icon [name]="Search" class="text-gray-400 mr-2" size="16" />
+      <input
+        type="text"
+        [(ngModel)]="searchTerm"
+        class="flex-1 text-sm text-gray-800 outline-none"
+        placeholder="{{ 'search' | translate }}"
+      />
+    </div>
+
+    <!-- Lista de opções -->
+    <div class="max-h-60 overflow-y-auto divide-y divide-gray-200">
+      <div
+        *ngFor="let option of filteredOptions()"
+        (click)="selectOption(option)"
+        class="text-sm px-3 py-2 cursor-pointer transition-colors duration-150 rounded"
+        [ngClass]="{
+          'bg-blue-100 text-blue-800': isSelected(option),
+          'hover:bg-primary/10 hover:text-primary': !isSelected(option),
+          'text-gray-800': !isSelected(option)
+        }"
+      >
+        {{ getOptionLabel(option) }}
+      </div>
+    </div>
+  </div>
+
+  <!-- Mensagem de erro -->
+  <span
+    *ngIf="control?.invalid && (control?.touched || control?.dirty)"
+    class="text-sm text-red-500"
+  >
+    {{ getErrorMessage() }}
+  </span>
+</div>

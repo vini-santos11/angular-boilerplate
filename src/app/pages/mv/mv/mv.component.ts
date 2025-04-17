@@ -7,10 +7,17 @@ import { InputComponent } from '../../../../shared/components/input/input.compon
 import { ButtonComponent } from '../../../../shared/components/button/button.component';
 import { LanguageService } from '../../../services/language.service';
 import { TranslatePipe } from '@ngx-translate/core';
+import { DropdownComponent } from "../../../../shared/components/dropdown/dropdown.component";
+import { CommonModule } from '@angular/common';
+
+interface Option {
+  id: number;
+  name: string;
+}
 
 @Component({
   selector: 'app-mv',
-  imports: [ButtonComponent, InputComponent, SwitchComponent, LucideAngularModule, ReactiveFormsModule, RouterModule, TranslatePipe],
+  imports: [ButtonComponent, InputComponent, SwitchComponent, LucideAngularModule, ReactiveFormsModule, RouterModule, TranslatePipe, DropdownComponent, CommonModule],
   templateUrl: './mv.component.html',
   styleUrl: './mv.component.css'
 })
@@ -24,6 +31,7 @@ export class MvComponent {
     password: new FormControl(''),
     confirmPassword: new FormControl(''),
     active: new FormControl(false, Validators.requiredTrue),
+    options: new FormControl([], Validators.required),
   });
 
   readonly LockKeyhole = LockKeyhole;
@@ -36,6 +44,17 @@ export class MvComponent {
 
   private languageService = inject(LanguageService);
   langs = this.languageService.langs;
+
+  options: Option[] = [
+    { id: 1, name: 'Murillo Nahas' },
+    { id: 2, name: 'Rafael Serinolli' },
+    { id: 3, name: 'Marcus Vinicius' },
+    { id: 3, name: 'Ana Maria' },
+    { id: 3, name: 'Ana Peraçoli' },
+    { id: 3, name: 'Duda Serinolli' },
+  ];
+
+  selectedOptions: Option[] = [];
 
   setLang(lang: string) {
     this.languageService.changeLanguage(lang);

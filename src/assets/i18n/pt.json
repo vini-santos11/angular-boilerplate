@@ -19,5 +19,11 @@
   "document": "Documento",
   "password": "Senha",
   "confirm_password": "Confirmar Senha",
-  "active": "Ativo"
+  "active": "Ativo",
+  "options": "Opções",
+  "options_placeholder": "Selecione uma opção",
+  "search": "Pesquisar",
+  "selected": "Selecionado:",
+  "item": "item",
+  "items": "itens"
 }

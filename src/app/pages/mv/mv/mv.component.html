@@ -93,6 +93,91 @@
       formControlName="active"
       [control]="form.get('active')"
     />
+
+    <app-dropdown
+      class="w-full"
+      label="{{ 'options' | translate }}"
+      placeholder="{{ 'options_placeholder' | translate }}"
+      [options]="options"
+      selectionMode="single"
+      [selected]="selectedOptions"
+      displayField="name"
+      formControlName="options"
+      [control]="form.get('options')"
+    />
+    <app-input
+      class="w-full"
+      label="{{ 'confirm_password' | translate }}"
+      placeholder="{{ 'confirm_password_placeholder' | translate }}"
+      [required]="true"
+      type="password"
+      [icon]="LockKeyhole"
+      formControlName="confirmPassword"
+      [control]="form.get('confirmPassword')"
+    />
+    <app-input
+      class="w-full"
+      label="{{ 'confirm_password' | translate }}"
+      placeholder="{{ 'confirm_password_placeholder' | translate }}"
+      [required]="true"
+      type="password"
+      [icon]="LockKeyhole"
+      formControlName="confirmPassword"
+      [control]="form.get('confirmPassword')"
+    />
+  </div>
+
+  <div class="flex mt-3 gap-4">
+    <app-input
+      class="w-full"
+      label="{{ 'confirm_password' | translate }}"
+      placeholder="{{ 'confirm_password_placeholder' | translate }}"
+      [required]="true"
+      type="password"
+      [icon]="LockKeyhole"
+      formControlName="confirmPassword"
+      [control]="form.get('confirmPassword')"
+    />
+    <app-input
+      class="w-full"
+      label="{{ 'confirm_password' | translate }}"
+      placeholder="{{ 'confirm_password_placeholder' | translate }}"
+      [required]="true"
+      type="password"
+      [icon]="LockKeyhole"
+      formControlName="confirmPassword"
+      [control]="form.get('confirmPassword')"
+    />
+    <app-input
+      class="w-full"
+      label="{{ 'confirm_password' | translate }}"
+      placeholder="{{ 'confirm_password_placeholder' | translate }}"
+      [required]="true"
+      type="password"
+      [icon]="LockKeyhole"
+      formControlName="confirmPassword"
+      [control]="form.get('confirmPassword')"
+    />
+    <app-input
+      class="w-full"
+      label="{{ 'confirm_password' | translate }}"
+      placeholder="{{ 'confirm_password_placeholder' | translate }}"
+      [required]="true"
+      type="password"
+      [icon]="LockKeyhole"
+      formControlName="confirmPassword"
+      [control]="form.get('confirmPassword')"
+    />
+    <app-input
+      class="w-full"
+      label="{{ 'confirm_password' | translate }}"
+      placeholder="{{ 'confirm_password_placeholder' | translate }}"
+      [required]="true"
+      type="password"
+      [icon]="LockKeyhole"
+      formControlName="confirmPassword"
+      [control]="form.get('confirmPassword')"
+    />
   </div>
 
   <div
@@ -107,3 +192,5 @@
     />
   </div>
 </form>
+
+<p *ngFor="let item of selectedOptions">{{ item }}</p>
