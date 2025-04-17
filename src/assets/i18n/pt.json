@@ -25,5 +25,7 @@
   "search": "Pesquisar",
   "selected": "Selecionado:",
   "item": "item",
-  "items": "itens"
+  "items": "itens",
+  "description": "Descrição",
+  "description_placeholder": "Digite uma descrição"
 }

@@ -128,55 +128,13 @@
   </div>
 
   <div class="flex mt-3 gap-4">
-    <app-input
+    <app-textarea
       class="w-full"
-      label="{{ 'confirm_password' | translate }}"
-      placeholder="{{ 'confirm_password_placeholder' | translate }}"
+      label="{{ 'description' | translate }}"
+      placeholder="{{ 'description_placeholder' | translate }}"
       [required]="true"
-      type="password"
-      [icon]="LockKeyhole"
-      formControlName="confirmPassword"
-      [control]="form.get('confirmPassword')"
-    />
-    <app-input
-      class="w-full"
-      label="{{ 'confirm_password' | translate }}"
-      placeholder="{{ 'confirm_password_placeholder' | translate }}"
-      [required]="true"
-      type="password"
-      [icon]="LockKeyhole"
-      formControlName="confirmPassword"
-      [control]="form.get('confirmPassword')"
-    />
-    <app-input
-      class="w-full"
-      label="{{ 'confirm_password' | translate }}"
-      placeholder="{{ 'confirm_password_placeholder' | translate }}"
-      [required]="true"
-      type="password"
-      [icon]="LockKeyhole"
-      formControlName="confirmPassword"
-      [control]="form.get('confirmPassword')"
-    />
-    <app-input
-      class="w-full"
-      label="{{ 'confirm_password' | translate }}"
-      placeholder="{{ 'confirm_password_placeholder' | translate }}"
-      [required]="true"
-      type="password"
-      [icon]="LockKeyhole"
-      formControlName="confirmPassword"
-      [control]="form.get('confirmPassword')"
-    />
-    <app-input
-      class="w-full"
-      label="{{ 'confirm_password' | translate }}"
-      placeholder="{{ 'confirm_password_placeholder' | translate }}"
-      [required]="true"
-      type="password"
-      [icon]="LockKeyhole"
-      formControlName="confirmPassword"
-      [control]="form.get('confirmPassword')"
+      formControlName="description"
+      [control]="form.get('description')"
     />
   </div>
 
@@ -193,4 +151,5 @@
   </div>
 </form>
 
-<p *ngFor="let item of selectedOptions">{{ item }}</p>
+<p>{{ form.value.name }}</p>
+<p>{{ form.value.description }}</p>

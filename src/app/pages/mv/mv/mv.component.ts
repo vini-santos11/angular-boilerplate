@@ -9,6 +9,7 @@ import { LanguageService } from '../../../services/language.service';
 import { TranslatePipe } from '@ngx-translate/core';
 import { DropdownComponent } from "../../../../shared/components/dropdown/dropdown.component";
 import { CommonModule } from '@angular/common';
+import { TextareaComponent } from "../../../../shared/components/textarea/textarea.component";
 
 interface Option {
   id: number;
@@ -17,7 +18,7 @@ interface Option {
 
 @Component({
   selector: 'app-mv',
-  imports: [ButtonComponent, InputComponent, SwitchComponent, LucideAngularModule, ReactiveFormsModule, RouterModule, TranslatePipe, DropdownComponent, CommonModule],
+  imports: [ButtonComponent, InputComponent, SwitchComponent, LucideAngularModule, ReactiveFormsModule, RouterModule, TranslatePipe, DropdownComponent, CommonModule, TextareaComponent],
   templateUrl: './mv.component.html',
   styleUrl: './mv.component.css'
 })
@@ -32,6 +33,7 @@ export class MvComponent {
     confirmPassword: new FormControl(''),
     active: new FormControl(false, Validators.requiredTrue),
     options: new FormControl([], Validators.required),
+    description: new FormControl('', Validators.required),
   });
 
   readonly LockKeyhole = LockKeyhole;

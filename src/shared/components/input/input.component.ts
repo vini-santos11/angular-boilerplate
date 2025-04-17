@@ -18,8 +18,8 @@ export const INPUT_VALUE_ACCESSOR: any = {
   styleUrl: './input.component.css',
   providers: [INPUT_VALUE_ACCESSOR]
 })
+
 export class InputComponent implements ControlValueAccessor {
-  @ViewChild('inputRef') inputRef!: ElementRef<HTMLInputElement>;
   @Input() label: string = '';
   @Input() required: boolean = false;
   @Input() type: string = '';

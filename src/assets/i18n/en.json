@@ -25,5 +25,7 @@
   "search": "Search",
   "selected": "Selected:",
   "item": "item",
-  "items": "items"
+  "items": "items",
+  "description": "Description",
+  "description_placeholder": "Enter a description"
 }
