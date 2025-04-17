@@ -3,6 +3,7 @@ import { Component, ElementRef, forwardRef, inject, Input, Optional, Self, ViewC
 import { MaskDirective } from '../../directives/mask.directive';
 import { AbstractControl, ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR, NgControl, ReactiveFormsModule } from '@angular/forms';
 import { Eye, EyeOff, LucideAngularModule } from 'lucide-angular';
+import { TranslateService } from '@ngx-translate/core';
 
 export const INPUT_VALUE_ACCESSOR: any = {
   provide: NG_VALUE_ACCESSOR,
@@ -36,7 +37,7 @@ export class InputComponent implements ControlValueAccessor {
   readonly Eye = Eye;
   readonly EyeOff = EyeOff;
 
-  constructor(){}
+  constructor(private translate: TranslateService){}
   onChange: (_value: string) => void = () => {};
   onTouched: () => void = () => {};
 
@@ -57,22 +58,26 @@ export class InputComponent implements ControlValueAccessor {
     if (!ctrl || !ctrl.errors) return '';
 
     if (ctrl.errors['required']) {
-      return 'Campo obrigatório.';
+      return this.translate.instant('required_field');
     }
 
     if (ctrl.errors['minlength']) {
-      return `Mínimo de ${ctrl.errors['minlength'].requiredLength} caracteres.`;
+      return this.translate.instant('minlength_field', {
+        min: ctrl.errors['minlength'].requiredLength
+      });
     }
 
     if (ctrl.errors['maxlength']) {
-      return `Máximo de ${ctrl.errors['maxlength'].requiredLength} caracteres.`;
+      return this.translate.instant('maxlength_field', {
+        max: ctrl.errors['maxlength'].requiredLength
+      });
     }
 
     if (ctrl.errors['email']) {
-      return 'E-mail inválido.';
+      return this.translate.instant('email_invalid');
     }
 
-    return 'Campo inválido.';
+    return this.translate.instant('invalid_field');
   }
 
   togglePassword() {

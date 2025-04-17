@@ -1,7 +1,22 @@
+<div class="flex justify-end m-2 gap-1">
+  <button (click)="setLang('pt')">
+    <img
+      src="/assets/images/brazil.png"
+      width="24"
+      height="16"
+      alt="Português"
+    />
+  </button>
+
+  <button (click)="setLang('en')">
+    <img src="/assets/images/uk.png" width="24" height="16" alt="English" />
+  </button>
+</div>
+
 <form method="post" [formGroup]="form" (ngSubmit)="send()" class="m-2">
   <app-input
-    label="Nome"
-    placeholder="Digite seu nome"
+    label="{{ 'name' | translate }}"
+    placeholder="{{ 'name_placeholder' | translate }}"
     [required]="true"
     type="text"
     class="mt-3"
@@ -13,8 +28,8 @@
   <div class="flex gap-4 mt-3">
     <app-input
       class="w-full"
-      label="CPF"
-      placeholder="Digite seu CPF"
+      label="{{ 'document' | translate }}"
+      placeholder="{{ 'document_placeholder' | translate }}"
       [required]="true"
       type="text"
       mask="000.000.000-00"
@@ -25,8 +40,8 @@
 
     <app-input
       class="w-full"
-      label="Telefone"
-      placeholder="Digite seu telefone"
+      label="{{ 'phone' | translate }}"
+      placeholder="{{ 'phone_placeholder' | translate }}"
       [required]="true"
       type="text"
       mask="(00) 00000-0000"
@@ -37,8 +52,8 @@
 
     <app-input
       class="w-full"
-      label="Email"
-      placeholder="Digite seu email"
+      label="{{ 'email' | translate }}"
+      placeholder="{{ 'email_placeholder' | translate }}"
       [required]="true"
       type="text"
       [icon]="Mail"
@@ -50,8 +65,8 @@
   <div class="flex gap-4 mt-3">
     <app-input
       class="w-full"
-      label="Senha"
-      placeholder="Digite sua senha"
+      label="{{ 'password' | translate }}"
+      placeholder="{{ 'password_placeholder' | translate }}"
       [required]="true"
       type="password"
       [icon]="LockKeyhole"
@@ -61,8 +76,8 @@
 
     <app-input
       class="w-full"
-      label="Confirmar Senha"
-      placeholder="Confirme sua senha"
+      label="{{ 'confirm_password' | translate }}"
+      placeholder="{{ 'confirm_password_placeholder' | translate }}"
       [required]="true"
       type="password"
       [icon]="LockKeyhole"
@@ -72,10 +87,14 @@
   </div>
 
   <div class="flex gap-4 mt-3">
-    <app-switch label="Ativo" labelPosition="top" formControlName="active" />
+    <app-switch
+      label="{{ 'active' | translate }}"
+      labelPosition="top"
+      formControlName="active"
+    />
   </div>
 
-  <button type="submit" class="bg-amber-600">Submit</button>
+  <!-- <button type="submit" class="bg-amber-600">Submit</button> -->
 </form>
 
 <p>{{ form.value.name }}</p>

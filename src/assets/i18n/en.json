@@ -1,0 +1,23 @@
+{
+  "required_field": "This field is required.",
+  "email_invalid": "Please enter a valid email address.",
+  "password_length": "Password must be at least 6 characters long.",
+  "password_mismatch": "Passwords do not match.",
+  "min_length": "Minimum length is {0} characters.",
+  "max_length": "Maximum length is {0} characters.",
+  "invalid_field": "Invalid field.",
+  "name_placeholder": "Enter your name",
+  "email_placeholder": "Enter your email",
+  "phone_placeholder": "Enter your phone number",
+  "document_placeholder": "Enter your document number",
+  "password_placeholder": "Enter your password",
+  "confirm_password_placeholder": "Confirm your password",
+  "submit": "Submit",
+  "name": "Name",
+  "email": "Email",
+  "phone": "Phone",
+  "document": "Document",
+  "password": "Password",
+  "confirm_password": "Confirm Password",
+  "active": "Active"
+}

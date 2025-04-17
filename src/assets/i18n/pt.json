@@ -1,0 +1,23 @@
+{
+  "required_field": "Este campo é obrigatório.",
+  "email_invalid": "Por favor, insira um endereço de e-mail válido.",
+  "password_length": "A senha deve ter pelo menos 6 caracteres.",
+  "password_mismatch": "As senhas não coincidem.",
+  "min_length": "O comprimento mínimo é {0} caracteres.",
+  "max_length": "O comprimento máximo é {0} caracteres.",
+  "invalid_field": "Campo inválido.",
+  "name_placeholder": "Digite seu nome",
+  "email_placeholder": "Digite seu e-mail",
+  "phone_placeholder": "Digite seu número de telefone",
+  "document_placeholder": "Digite seu número de documento",
+  "password_placeholder": "Digite sua senha",
+  "confirm_password_placeholder": "Confirme sua senha",
+  "submit": "Enviar",
+  "name": "Nome",
+  "email": "E-mail",
+  "phone": "Telefone",
+  "document": "Documento",
+  "password": "Senha",
+  "confirm_password": "Confirmar Senha",
+  "active": "Ativo"
+}
