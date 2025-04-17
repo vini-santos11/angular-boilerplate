@@ -1,11 +1,12 @@
-<button class="flex items-center gap-4 rounded-lg font-bold" [ngClass]="[buttonStyle, buttonSize]">
-  <ng-container *ngIf="icon && iconPosition === 'left'">
+
+<button class="flex items-center gap-4 rounded-lg font-bold" [ngClass]="[buttonStyle, buttonSize]" [type]="type">
+  @if (icon && iconPosition === 'left') {
     <lucide-icon [name]="icon" class="w-5 h-5" />
-  </ng-container>
+  }
 
   {{ text }}
 
-  <ng-container *ngIf="icon && iconPosition === 'right'">
+  @if (icon && iconPosition === 'right') {
     <lucide-icon [img]="icon" class="w-5 h-5" />
-  </ng-container>
+  }
 </button>
