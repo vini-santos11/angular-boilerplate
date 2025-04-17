@@ -9,5 +9,4 @@ import { ButtonComponent } from "../shared/components/button/button.component";
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-readonly Mail = Mail;
 }

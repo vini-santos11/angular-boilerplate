@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ButtonComponent } from "../../../shared/components/button/button.component";
+import { Mail } from 'lucide-angular';
 
 @Component({
   selector: 'app-home',
@@ -8,6 +9,5 @@ import { ButtonComponent } from "../../../shared/components/button/button.compon
   styleUrl: './home.component.css'
 })
 export class HomeComponent {
-Mail: string|undefined;
-
+  readonly Mail = Mail;
 }

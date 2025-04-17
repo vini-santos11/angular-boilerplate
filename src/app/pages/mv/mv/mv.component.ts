@@ -14,6 +14,7 @@ import { TranslatePipe } from '@ngx-translate/core';
   templateUrl: './mv.component.html',
   styleUrl: './mv.component.css'
 })
+
 export class MvComponent {
   public form = new FormGroup({
     name: new FormControl('', Validators.required),
