@@ -1,12 +1,21 @@
-
-<button class="flex items-center gap-4 rounded-lg font-bold" [ngClass]="[buttonStyle, buttonSize]" [type]="type">
-  @if (icon && iconPosition === 'left') {
-    <lucide-icon [name]="icon" class="w-5 h-5" />
+<button [ngClass]="combinedClasses" [type]="type">
+  @if (mode === 'icon' && icon) {
+    <lucide-icon [img]="icon"  [size]="iconSize" />
   }
 
-  {{ text }}
+  @if (mode === 'text' && text) {
+    {{ text }}
+  }
 
-  @if (icon && iconPosition === 'right') {
-    <lucide-icon [img]="icon" class="w-5 h-5" />
+  @if (mode === 'textAndIcon') {
+    @if (icon && iconPosition === 'left') {
+      <lucide-icon [img]="icon" [size]="iconSize" />
+    }
+
+    {{ text }}
+
+    @if (icon && iconPosition === 'right') {
+      <lucide-icon [img]="icon" [size]="iconSize"  />
+    }
   }
 </button>

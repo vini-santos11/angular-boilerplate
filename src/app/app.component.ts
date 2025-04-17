@@ -1,3 +1,4 @@
+import { Mail } from 'lucide-angular';
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { ButtonComponent } from "../shared/components/button/button.component";
@@ -8,4 +9,5 @@ import { ButtonComponent } from "../shared/components/button/button.component";
   styleUrl: './app.component.css'
 })
 export class AppComponent {
+readonly Mail = Mail;
 }
