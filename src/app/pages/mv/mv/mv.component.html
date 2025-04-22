@@ -103,17 +103,19 @@
       [selected]="selectedOptions"
       displayField="name"
       formControlName="options"
+      (selectionChange)="onOptionsChange($event)"
       [control]="form.get('options')"
     />
-    <app-input
+    <app-date-picker
       class="w-full"
-      label="{{ 'confirm_password' | translate }}"
-      placeholder="{{ 'confirm_password_placeholder' | translate }}"
       [required]="true"
-      type="password"
-      [icon]="LockKeyhole"
-      formControlName="confirmPassword"
-      [control]="form.get('confirmPassword')"
+      label="{{ 'date' | translate }}"
+      placeholder="{{ 'date_placeholder' | translate }}"
+      mode="range"
+      [maxSelections]="3"
+      formControlName="date"
+      [control]="form.get('date')"
+      (dateChange)="onDateChange($event)"
     />
     <app-input
       class="w-full"

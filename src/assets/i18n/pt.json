@@ -27,5 +27,34 @@
   "item": "item",
   "items": "itens",
   "description": "Descrição",
-  "description_placeholder": "Digite uma descrição"
+  "description_placeholder": "Digite uma descrição",
+  "date": "Data",
+  "date_placeholder": "Selecione uma data",
+  "datepicker": {
+    "to": "...",
+    "months": {
+      "jan": "Janeiro",
+      "feb": "Fevereiro",
+      "mar": "Março",
+      "apr": "Abril",
+      "may": "Maio",
+      "jun": "Junho",
+      "jul": "Julho",
+      "aug": "Agosto",
+      "sep": "Setembro",
+      "oct": "Outubro",
+      "nov": "Novembro",
+      "dec": "Dezembro"
+    },
+    "weekdays": {
+      "mon": "Seg",
+      "tue": "Ter",
+      "wed": "Qua",
+      "thu": "Qui",
+      "fri": "Sex",
+      "sat": "Sab",
+      "sun": "Dom"
+    }
+  },
+  "confirm": "Confirmar"
 }

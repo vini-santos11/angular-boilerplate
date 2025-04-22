@@ -10,6 +10,7 @@ import { TranslatePipe } from '@ngx-translate/core';
 import { DropdownComponent } from "../../../../shared/components/dropdown/dropdown.component";
 import { CommonModule } from '@angular/common';
 import { TextareaComponent } from "../../../../shared/components/textarea/textarea.component";
+import { DatePickerComponent } from "../../../../shared/components/date-picker/date-picker.component";
 
 interface Option {
   id: number;
@@ -18,7 +19,7 @@ interface Option {
 
 @Component({
   selector: 'app-mv',
-  imports: [ButtonComponent, InputComponent, SwitchComponent, LucideAngularModule, ReactiveFormsModule, RouterModule, TranslatePipe, DropdownComponent, CommonModule, TextareaComponent],
+  imports: [ButtonComponent, InputComponent, SwitchComponent, LucideAngularModule, ReactiveFormsModule, RouterModule, TranslatePipe, DropdownComponent, CommonModule, TextareaComponent, DatePickerComponent],
   templateUrl: './mv.component.html',
   styleUrl: './mv.component.css'
 })
@@ -34,6 +35,7 @@ export class MvComponent {
     active: new FormControl(false, Validators.requiredTrue),
     options: new FormControl([], Validators.required),
     description: new FormControl('', Validators.required),
+    date: new FormControl(new Date(), Validators.required),
   });
 
   readonly LockKeyhole = LockKeyhole;
@@ -62,8 +64,14 @@ export class MvComponent {
     this.languageService.changeLanguage(lang);
   }
 
+  onOptionsChange(selectedOptions: Option | Option[]) {
+  }
+
+  onDateChange(date: Date | Date[] | { start: Date | null; end: Date | null; range?: Date[] }) {
+    console.log(date);
+  }
+
   send() {
-    console.log(this.form.valid);
-    console.log(this.form.value);
+
   }
 }

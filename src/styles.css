@@ -3,6 +3,11 @@
 
 @theme {
   --color-primary: #7E00FE;
+  --color-primary-100: #e5ccfe;
+  --color-primary-200: #d6a3fe;
+  --color-primary-300: #c57bfe;
+  --color-primary-400: #b052fe;
+  --color-primary-500: #a22afe;
   --color-secondary: #00BFFF;
   --color-error: #FF3D00;
   --color-success: #00FF3D;

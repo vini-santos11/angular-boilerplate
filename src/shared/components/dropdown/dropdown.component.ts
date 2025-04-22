@@ -145,27 +145,7 @@ export class DropdownComponent<T> implements ControlValueAccessor {
     const ctrl = this.control;
     if (!ctrl || !ctrl.errors) return '';
 
-    if (ctrl.errors['required']) {
-      return this.translate.instant('required_field');
-    }
-
-    if (ctrl.errors['minlength']) {
-      return this.translate.instant('minlength_field', {
-        min: ctrl.errors['minlength'].requiredLength
-      });
-    }
-
-    if (ctrl.errors['maxlength']) {
-      return this.translate.instant('maxlength_field', {
-        max: ctrl.errors['maxlength'].requiredLength
-      });
-    }
-
-    if (ctrl.errors['email']) {
-      return this.translate.instant('email_invalid');
-    }
-
-    return this.translate.instant('invalid_field');
+    return this.translate.instant('required_field');
   }
 
   filteredOptions(): T[] {

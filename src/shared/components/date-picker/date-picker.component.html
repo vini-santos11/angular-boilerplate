@@ -1,0 +1,165 @@
+<div #containerRef class="relative w-full flex flex-col gap-1">
+  <!-- Label -->
+  <div class="flex flex-row justify-between">
+    <label
+      *ngIf="label"
+      class="text-sm font-bold"
+      [ngClass]="{
+        'text-gray-400': disabled,
+        'text-gray-800': !disabled,
+        'cursor-not-allowed': disabled
+      }"
+    >
+      {{ label }}
+      <span *ngIf="required" class="text-red-500">*</span>
+    </label>
+  </div>
+
+  <!-- Input visual -->
+  <div
+    class="flex items-center border rounded-lg px-3 py-2 shadow-sm min-h-[2.5rem] cursor-pointer transition-all duration-200 ease-in-out"
+    [ngClass]="{
+      'bg-white': !disabled,
+      'bg-gray-200': disabled,
+      'cursor-not-allowed': disabled,
+      'border-primary ring-1 ring-primary': isOpen,
+      'border-gray-300': !isOpen
+    }"
+    (click)="toggleCalendar()"
+    tabindex="0"
+  >
+    <span class="text-sm text-gray-400 truncate">
+      {{ displayValue || displayPlaceholder }}
+    </span>
+
+    <lucide-icon
+      [name]="isOpen ? ChevronUp : ChevronDown"
+      class="ml-auto text-gray-400"
+      size="18"
+    />
+  </div>
+
+  <!-- Calendário flutuante -->
+  <div
+    *ngIf="isOpen"
+    class="absolute top-full left-0 mt-1 min-w-[400px] w-full max-w-none bg-white border border-gray-300 rounded-lg z-10 shadow-lg p-4"
+  >
+    <!-- Cabeçalho -->
+    <div class="flex justify-between items-center mb-3 relative">
+      <button
+        (click)="prevMonth()"
+        class="text-gray-600 hover:text-black p-1 rounded-full hover:bg-gray-200"
+        aria-label="Anterior"
+      >
+        &lt;
+      </button>
+
+      <!-- Botão do mês/ano -->
+      <button
+        (click)="toggleMonthYearSelector()"
+        class="flex items-center gap-1 text-gray-700 capitalize text-sm font-semibold hover:text-primary-300"
+      >
+        {{ monthLabel }}
+        <lucide-icon [name]="ChevronDown" size="16" class="text-gray-400" />
+      </button>
+
+      <button
+        (click)="nextMonth()"
+        class="text-gray-600 hover:text-black p-1 rounded-full hover:bg-gray-200"
+        aria-label="Próximo"
+      >
+        &gt;
+      </button>
+
+      <!-- Seletor de mês/ano -->
+      <div
+        *ngIf="isSelectingMonthYear"
+        class="absolute left-1/2 top-full -translate-x-1/2 mt-2 border-gray-300 bg-white border rounded-md shadow-md z-50 p-2 w-64"
+      >
+        <div class="flex gap-2">
+          <select
+            [(ngModel)]="selectedMonth"
+            class="border border-gray-300 rounded-md px-2 py-1 w-1/2 text-sm focus:outline-none focus:ring-1 focus:ring-primary"
+          >
+            <option
+              *ngFor="let m of translatedMonths; let i = index"
+              [value]="i"
+            >
+              {{ m }}
+            </option>
+          </select>
+
+          <select
+            [(ngModel)]="selectedYear"
+            class="border border-gray-300 rounded-md px-2 py-1 w-1/2 text-sm focus:outline-none focus:ring-1 focus:ring-primary"
+          >
+            <option *ngFor="let y of yearList" [value]="y">
+              {{ y }}
+            </option>
+          </select>
+        </div>
+
+        <button
+          (click)="applyMonthYearSelection()"
+          class="mt-2 w-full text-sm bg-primary text-white rounded-md px-3 py-1.5 hover:bg-primary-400 transition"
+        >
+          {{ "confirm" | translate }}
+        </button>
+      </div>
+    </div>
+
+    <!-- Dias da semana -->
+    <div
+      class="grid grid-cols-7 text-center text-xs font-medium text-gray-500 mb-1"
+    >
+      <div *ngFor="let day of translatedWeekdays">
+        {{ day }}
+      </div>
+    </div>
+
+    <!-- Dias do mês -->
+    <div class="grid grid-cols-7 gap-[4px]">
+      <div
+        *ngFor="let date of daysInMonth"
+        class="relative flex items-center justify-center"
+      >
+        <ng-container *ngIf="!date">
+          <div class="w-8 h-8"></div>
+        </ng-container>
+
+        <ng-container *ngIf="date">
+          <!-- Range background -->
+          <div
+            *ngIf="
+              mode === 'range' &&
+              isInRange(date) &&
+              !isStart(date) &&
+              !isEnd(date)
+            "
+            class="absolute inset-0 bg-purple-100 rounded-md"
+          ></div>
+
+          <button
+            (click)="onDateClick(date)"
+            class="w-8 h-8 text-sm relative z-10 flex items-center justify-center rounded-full transition duration-200"
+            [ngClass]="{
+              'bg-primary text-white':
+                isSelected(date) || isStart(date) || isEnd(date),
+              'hover:bg-gray-200': true
+            }"
+          >
+            {{ date.getDate() }}
+          </button>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mensagem de erro -->
+  <span
+    *ngIf="control?.invalid && (control?.touched || control?.dirty)"
+    class="text-sm text-red-500"
+  >
+    {{ getErrorMessage() }}
+  </span>
+</div>
