@@ -10,7 +10,7 @@ import { TranslatePipe } from '@ngx-translate/core';
 import { DropdownComponent } from "../../../../shared/components/dropdown/dropdown.component";
 import { CommonModule } from '@angular/common';
 import { TextareaComponent } from "../../../../shared/components/textarea/textarea.component";
-import { DatePickerComponent } from "../../../../shared/components/date-picker/date-picker.component";
+import { DatePickerComponent, DatePickerValue } from "../../../../shared/components/date-picker/date-picker.component";
 
 interface Option {
   id: number;
@@ -67,7 +67,7 @@ export class MvComponent {
   onOptionsChange(selectedOptions: Option | Option[]) {
   }
 
-  onDateChange(date: Date | Date[] | { start: Date | null; end: Date | null; range?: Date[] }) {
+  onDateChange(date: DatePickerValue) {
     console.log(date);
   }
 

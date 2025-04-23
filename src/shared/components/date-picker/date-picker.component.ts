@@ -2,7 +2,19 @@ import { ChevronUp, ChevronDown, LucideAngularModule } from 'lucide-angular';
 import { CommonModule } from '@angular/common';
 import { Component, ElementRef, EventEmitter, forwardRef, HostListener, Input, Output, ViewChild } from '@angular/core';
 import { AbstractControl, ControlValueAccessor, FormControl, FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { TranslateModule, TranslatePipe, TranslateService } from '@ngx-translate/core';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
+
+export type DatePickerSingle = Date;
+
+export type DatePickerMultiple = Date[];
+
+export interface DatePickerRange {
+  start: Date | null;
+  end: Date | null;
+  range?: Date[];
+}
+
+export type DatePickerValue = DatePickerSingle | DatePickerMultiple | DatePickerRange;
 
 @Component({
   selector: 'app-date-picker',
@@ -26,7 +38,7 @@ export class DatePickerComponent implements ControlValueAccessor {
   @Input() maxSelections: number = 2;
   @Input() disabled: boolean = false;
   @Input() control!: AbstractControl | FormControl | null;
-  @Output() dateChange = new EventEmitter<Date | Date[] | { start: Date | null; end: Date | null; range?: Date[] }>();
+  @Output() dateChange = new EventEmitter<DatePickerValue>();
   @ViewChild('containerRef') containerRef!: ElementRef;
 
   today = new Date();
@@ -39,7 +51,7 @@ export class DatePickerComponent implements ControlValueAccessor {
 
   isOpen = false;
 
-  onChange: (_value: Date) => void = () => {};
+  onChange: (_value: DatePickerValue) => void = () => {};
   private onTouched = () => {};
 
   translatedMonths: string[] = [];
@@ -56,60 +68,22 @@ export class DatePickerComponent implements ControlValueAccessor {
   ngOnInit() {
     this.generateMonth(this.currentYear, this.currentMonth);
     this.initTranslations();
-    this.translate.onLangChange.subscribe(() => {
-      this.initTranslations();
-    })
+    this.translate.onLangChange.subscribe(() => this.initTranslations());
   }
 
-  initTranslations() {
-    this.translate.get([
-      'datepicker.months.jan',
-      'datepicker.months.feb',
-      'datepicker.months.mar',
-      'datepicker.months.apr',
-      'datepicker.months.may',
-      'datepicker.months.jun',
-      'datepicker.months.jul',
-      'datepicker.months.aug',
-      'datepicker.months.sep',
-      'datepicker.months.oct',
-      'datepicker.months.nov',
-      'datepicker.months.dec'
-    ]).subscribe(months => {
-      this.translatedMonths = [
-        months['datepicker.months.jan'],
-        months['datepicker.months.feb'],
-        months['datepicker.months.mar'],
-        months['datepicker.months.apr'],
-        months['datepicker.months.may'],
-        months['datepicker.months.jun'],
-        months['datepicker.months.jul'],
-        months['datepicker.months.aug'],
-        months['datepicker.months.sep'],
-        months['datepicker.months.oct'],
-        months['datepicker.months.nov'],
-        months['datepicker.months.dec']
-      ];
+  private initTranslations(): void {
+    const monthKeys = Array.from({ length: 12 }, (_, i) =>
+      `datepicker.months.${['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec'][i]}`
+    );
+
+    this.translate.get(monthKeys).subscribe(months => {
+      this.translatedMonths = monthKeys.map(key => months[key]);
     });
 
-    this.translate.get([
-      'datepicker.weekdays.sun',
-      'datepicker.weekdays.mon',
-      'datepicker.weekdays.tue',
-      'datepicker.weekdays.wed',
-      'datepicker.weekdays.thu',
-      'datepicker.weekdays.fri',
-      'datepicker.weekdays.sat'
-    ]).subscribe(weekdays => {
-      this.translatedWeekdays = [
-        weekdays['datepicker.weekdays.sun'],
-        weekdays['datepicker.weekdays.mon'],
-        weekdays['datepicker.weekdays.tue'],
-        weekdays['datepicker.weekdays.wed'],
-        weekdays['datepicker.weekdays.thu'],
-        weekdays['datepicker.weekdays.fri'],
-        weekdays['datepicker.weekdays.sat']
-      ];
+    const weekdayKeys = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'].map(day => `datepicker.weekdays.${day}`);
+
+    this.translate.get(weekdayKeys).subscribe(weekdays => {
+      this.translatedWeekdays = weekdayKeys.map(key => weekdays[key]);
     });
   }
 
@@ -187,25 +161,15 @@ export class DatePickerComponent implements ControlValueAccessor {
     return '';
   }
 
-  nextMonth() {
-    if (this.currentMonth === 11) {
-      this.currentMonth = 0;
-      this.currentYear++;
-    } else {
-      this.currentMonth++;
-    }
-
+  nextMonth(): void {
+    this.currentMonth = (this.currentMonth + 1) % 12;
+    if (this.currentMonth === 0) this.currentYear++;
     this.generateMonth(this.currentYear, this.currentMonth);
   }
 
-  prevMonth() {
-    if (this.currentMonth === 0) {
-      this.currentMonth = 11;
-      this.currentYear--;
-    } else {
-      this.currentMonth--;
-    }
-
+  prevMonth(): void {
+    this.currentMonth = (this.currentMonth + 11) % 12;
+    if (this.currentMonth === 11) this.currentYear--;
     this.generateMonth(this.currentYear, this.currentMonth);
   }
 
@@ -290,37 +254,23 @@ export class DatePickerComponent implements ControlValueAccessor {
     return this.selectedRange.end?.toDateString() === date.toDateString();
   }
 
-  registerOnChange(fn: any): void {
+  registerOnChange(fn: (value: DatePickerValue) => void): void {
     this.onChange = fn;
   }
 
-  registerOnTouched(fn: any): void {
+  registerOnTouched(fn: () => void): void {
     this.onTouched = fn;
   }
 
-  emitValue(value: any) {
+  emitValue(value: DatePickerValue) {
     this.onChange(value);
     this.dateChange.emit(this.prepareOutput(value));
   }
 
-  prepareOutput(value: any): Date | Date[] | { start: Date | null; end: Date | null; range?: Date[] } {
-    if (this.mode === 'single') {
-      return value;
-    }
-
-    if (this.mode === 'multiple') {
-      return value;
-    }
-
-    if (this.mode === 'range' && value?.start && value?.end) {
-      return {
-        start: value.start,
-        end: value.end,
-        range: this.getDatesInRange(value.start, value.end)
-      };
-    }
-
-    return value;
+  prepareOutput(value: DatePickerValue): DatePickerValue {
+    if (this.mode !== 'range') return value;
+    const { start, end } = value as DatePickerRange;
+    return start && end ? { start, end, range: this.getDatesInRange(start, end) } : value;
   }
 
   getDatesInRange(start: Date, end: Date): Date[] {
@@ -339,6 +289,6 @@ export class DatePickerComponent implements ControlValueAccessor {
   onClickOutside(event: MouseEvent) {
     if (!this.containerRef?.nativeElement.contains(event.target)) {
       this.isOpen = false;
+    }
   }
-}
 }
