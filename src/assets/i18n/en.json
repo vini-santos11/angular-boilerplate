@@ -56,5 +56,7 @@
       "sun": "Sun"
     }
   },
-  "confirm": "Confirm"
+  "confirm": "Confirm",
+  "hour": "Hour",
+  "minute": "Minute"
 }

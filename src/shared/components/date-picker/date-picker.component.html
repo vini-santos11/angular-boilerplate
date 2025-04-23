@@ -22,14 +22,23 @@
       'bg-white': !disabled,
       'bg-gray-200': disabled,
       'cursor-not-allowed': disabled,
-      'border-primary ring-1 ring-primary': isOpen,
+      'border-blue-500 ring-1 ring-blue-500': isOpen,
       'border-gray-300': !isOpen
     }"
     (click)="toggleCalendar()"
     tabindex="0"
   >
     <span class="text-sm text-gray-400 truncate">
-      {{ displayValue || displayPlaceholder }}
+      {{
+        displayValue ||
+          displayPlaceholder +
+            (showTime && mode === "single"
+              ? " " +
+                selectedHour.toString().padStart(2, "0") +
+                ":" +
+                selectedMinute.toString().padStart(2, "0")
+              : "")
+      }}
     </span>
 
     <lucide-icon
@@ -39,7 +48,7 @@
     />
   </div>
 
-  <!-- Calendário flutuante -->
+  <!-- Calendário -->
   <div
     *ngIf="isOpen"
     class="absolute top-full left-0 mt-1 min-w-[400px] w-full max-w-none bg-white border border-gray-300 rounded-lg z-10 shadow-lg p-4"
@@ -54,10 +63,10 @@
         &lt;
       </button>
 
-      <!-- Botão do mês/ano -->
+      <!-- Botão com seletor de mês/ano -->
       <button
         (click)="toggleMonthYearSelector()"
-        class="flex items-center gap-1 text-gray-700 capitalize text-sm font-semibold hover:text-primary-300"
+        class="flex items-center gap-1 text-gray-700 capitalize text-sm font-semibold hover:text-blue-600"
       >
         {{ monthLabel }}
         <lucide-icon [name]="ChevronDown" size="16" class="text-gray-400" />
@@ -71,10 +80,10 @@
         &gt;
       </button>
 
-      <!-- Seletor de mês/ano -->
+      <!-- Dropdown de mês/ano -->
       <div
         *ngIf="isSelectingMonthYear"
-        class="absolute left-1/2 top-full -translate-x-1/2 mt-2 border-gray-300 bg-white border rounded-md shadow-md z-50 p-2 w-64"
+        class="absolute left-1/2 top-full -translate-x-1/2 mt-2 bg-white border border-gray-300 rounded-lg shadow-md z-50 p-3 w-64"
       >
         <div class="flex gap-2">
           <select
@@ -101,7 +110,7 @@
 
         <button
           (click)="applyMonthYearSelection()"
-          class="mt-2 w-full text-sm bg-primary text-white rounded-md px-3 py-1.5 hover:bg-primary-400 transition"
+          class="mt-2 w-full text-sm bg-primary text-white rounded-md px-3 py-1.5 hover:bg-primary/90 transition"
         >
           {{ "confirm" | translate }}
         </button>
@@ -128,7 +137,6 @@
         </ng-container>
 
         <ng-container *ngIf="date">
-          <!-- Range background -->
           <div
             *ngIf="
               mode === 'range' &&
@@ -151,6 +159,42 @@
             {{ date.getDate() }}
           </button>
         </ng-container>
+      </div>
+    </div>
+
+    <!-- Seletor de hora -->
+    <div
+      *ngIf="mode === 'single' && showTime"
+      class="mt-4 flex justify-between gap-2"
+    >
+      <div class="flex flex-col w-1/2">
+        <label class="text-xs text-gray-500 font-medium">{{
+          "hour" | translate
+        }}</label>
+        <select
+          class="mt-1 border border-gray-300 rounded-md px-2 py-1 text-sm outline-none focus:ring-1 focus:ring-primary"
+          [(ngModel)]="selectedHour"
+          (change)="onTimeChange()"
+        >
+          <option *ngFor="let hour of hours" [value]="hour">
+            {{ hour.toString().padStart(2, "0") }}
+          </option>
+        </select>
+      </div>
+
+      <div class="flex flex-col w-1/2">
+        <label class="text-xs text-gray-500 font-medium">{{
+          "minute" | translate
+        }}</label>
+        <select
+          class="mt-1 border border-gray-300 rounded-md px-2 py-1 text-sm outline-none focus:ring-1 focus:ring-primary"
+          [(ngModel)]="selectedMinute"
+          (change)="onTimeChange()"
+        >
+          <option *ngFor="let minute of minutes" [value]="minute">
+            {{ minute.toString().padStart(2, "0") }}
+          </option>
+        </select>
       </div>
     </div>
   </div>

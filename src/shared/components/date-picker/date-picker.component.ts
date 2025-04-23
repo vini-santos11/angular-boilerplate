@@ -38,6 +38,7 @@ export class DatePickerComponent implements ControlValueAccessor {
   @Input() maxSelections: number = 2;
   @Input() disabled: boolean = false;
   @Input() control!: AbstractControl | FormControl | null;
+  @Input() showTime: boolean = false;
   @Output() dateChange = new EventEmitter<DatePickerValue>();
   @ViewChild('containerRef') containerRef!: ElementRef;
 
@@ -62,6 +63,10 @@ export class DatePickerComponent implements ControlValueAccessor {
   yearList: number[] = [];
   selectedDates: Date[] = [];
   selectedRange: { start: Date | null; end: Date | null } = { start: null, end: null };
+  selectedHour: number = 0;
+  selectedMinute: number = 0;
+  hours: number[] = Array.from({ length: 24 }, (_, i) => i);
+  minutes: number[] = Array.from({ length: 60 }, (_, i) => i);
 
   constructor(private translate: TranslateService) {}
 
@@ -89,11 +94,18 @@ export class DatePickerComponent implements ControlValueAccessor {
 
   get displayValue(): string | null {
     if (this.mode === 'single' && this.selectedDates.length) {
-      return this.formatDate(this.selectedDates[0]);
+      const date = this.selectedDates[0];
+      const base = this.formatDate(date);
+      const time = this.showTime
+        ? ` ${date.getHours().toString().padStart(2, '0')}:${date.getMinutes().toString().padStart(2, '0')}`
+        : '';
+      return base + time;
     }
+
     if (this.mode === 'multiple' && this.selectedDates.length) {
       return this.selectedDates.map(d => this.formatDate(d)).join(', ');
     }
+
     if (this.mode === 'range' && this.selectedRange.start) {
       const start = this.formatDate(this.selectedRange.start);
       const end = this.selectedRange.end ? this.formatDate(this.selectedRange.end) : '...';
@@ -181,8 +193,12 @@ export class DatePickerComponent implements ControlValueAccessor {
   }
 
   writeValue(value: any): void {
-    if (this.mode === 'single') {
-      this.selectedDates = value ? [new Date(value)] : [];
+    if (this.mode === 'single' && value instanceof Date) {
+      this.selectedDates = [new Date(value)];
+      if (this.showTime) {
+        this.selectedHour = value.getHours();
+        this.selectedMinute = value.getMinutes();
+      }
     }
 
     if (this.mode === 'multiple' && Array.isArray(value)) {
@@ -202,6 +218,7 @@ export class DatePickerComponent implements ControlValueAccessor {
 
     switch (this.mode) {
       case 'single':
+        if (this.showTime) date.setHours(this.selectedHour, this.selectedMinute, 0, 0);
         this.selectedDates = [date];
         this.emitValue(date);
         break;
@@ -214,6 +231,14 @@ export class DatePickerComponent implements ControlValueAccessor {
         this.emitValue({ ...this.selectedRange });
         break;
     }
+  }
+
+  onTimeChange() {
+    if (this.mode !== 'single' || !this.showTime || !this.selectedDates.length) return;
+
+    const selected = this.selectedDates[0];
+    selected.setHours(this.selectedHour, this.selectedMinute, 0, 0);
+    this.emitValue(selected);
   }
 
   toggleDate(date: Date) {
