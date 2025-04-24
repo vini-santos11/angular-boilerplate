@@ -19,7 +19,17 @@ interface Option {
 
 @Component({
   selector: 'app-mv',
-  imports: [ButtonComponent, InputComponent, SwitchComponent, LucideAngularModule, ReactiveFormsModule, RouterModule, TranslatePipe, DropdownComponent, CommonModule, TextareaComponent, DatePickerComponent],
+  imports: [ButtonComponent,
+    InputComponent,
+    SwitchComponent,
+    LucideAngularModule,
+    ReactiveFormsModule,
+    RouterModule,
+    TranslatePipe,
+    DropdownComponent,
+    CommonModule,
+    TextareaComponent,
+    DatePickerComponent],
   templateUrl: './mv.component.html',
   styleUrl: './mv.component.css'
 })

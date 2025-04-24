@@ -1,0 +1,27 @@
+<aside
+  (mouseenter)="onMouseEnter()"
+  (mouseleave)="onMouseLeave()"
+  [ngClass]="{
+    'translate-x-0': isOpen,
+    '-translate-x-full': !isOpen && isMobile,
+    'w-64': !isCollapsed,
+    'w-16': isCollapsed
+  }"
+  class="fixed z-50 bg-primary-400 text-white p-4 space-y-2 h-screen top-0 left-0 transition-all duration-300 ease-in-out md:top-4 md:left-4 md:bottom-4 md:rounded-2xl md:h-auto md:translate-x-0"
+>
+  <!-- Botão colapsar (desktop apenas) -->
+  <button
+    *ngIf="!isMobile || isOpen"
+    (click)="handleToggleButton()"
+    class="absolute translate-x-full top-2 right-3 bg-white text-primary rounded-full w-7 h-7 flex items-center justify-center shadow-lg border border-primary"
+  >
+    <lucide-icon
+      [img]="isMobile ? ChevronLeft : collapsed ? ChevronRight : ChevronLeft"
+      class="w-4 h-4"
+    />
+  </button>
+
+  <div class="space-y-2 overflow-hidden">
+    <ng-content></ng-content>
+  </div>
+</aside>

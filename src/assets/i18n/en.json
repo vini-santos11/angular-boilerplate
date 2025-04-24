@@ -58,5 +58,7 @@
   },
   "confirm": "Confirm",
   "hour": "Hour",
-  "minute": "Minute"
+  "minute": "Minute",
+  "settings": "Settings",
+  "home": "Home"
 }
