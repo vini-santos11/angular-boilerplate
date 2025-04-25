@@ -1,0 +1,45 @@
+<div
+  class="flex items-center gap-2"
+  [ngClass]="{
+    'flex-col-reverse': labelPosition === 'bottom',
+    'flex-row-reverse': labelPosition === 'right',
+    'flex-col': labelPosition === 'top',
+    'flex-row': labelPosition === 'left'
+  }"
+>
+  <span *ngIf="label"
+    class="text-sm"
+    [ngClass]="[
+      getLabelColorClass(),
+      labelPosition === 'left' ? 'mb-0 ml-2' :
+      labelPosition === 'right' ? 'mb-0 mr-2' :
+      labelPosition === 'top' ? 'mb-1' : 'mt-1'
+    ]"
+  >
+    {{ label }}
+  </span>
+
+  <div
+    class="flex items-center justify-center border-2 rounded cursor-pointer transition-all duration-200"
+    [ngClass]="[
+      getCheckboxSizeClass(),
+      checked ? getCheckboxColorClass() : 'border-gray-300',
+      disabled ? 'opacity-50 cursor-not-allowed' : ''
+    ]"
+    (click)="toggleCheckbox()"
+  >
+    <svg
+      *ngIf="checked"
+      xmlns="http://www.w3.org/2000/svg"
+      class="w-3/4 h-3/4 text-white"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="4"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    >
+      <polyline points="20 6 9 17 4 12"></polyline>
+    </svg>
+  </div>
+</div>

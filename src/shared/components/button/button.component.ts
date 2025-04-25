@@ -19,6 +19,8 @@ export class ButtonComponent {
   @Input() text?: string;
   @Input() iconPosition: 'left' | 'right' = 'left';
 
+
+
   get variantClass(): string {
     switch (this.variant) {
       case 'filled':
@@ -42,7 +44,7 @@ export class ButtonComponent {
   get styleClass(): string {
     switch (this.mode) {
       case 'icon':
-       switch(this.size) {
+        switch (this.size) {
           case 'small':
             return 'rounded-full w-9 h-9 flex items-center justify-center text-sm';
           case 'medium':
