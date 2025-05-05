@@ -8,7 +8,7 @@
     <lucide-icon [img]="Menu" class="w-5 h-5" />
   </button>
 
-  <div class="flex flex-1 overflow-hidden bg-red-400 md:p-4">
+  <div class="relative h-full flex flex-1 overflow-hidden md:p-4">
     <app-sidebar #sidebar>
       <app-sidebar-item
         [icon]="Home"
@@ -35,7 +35,12 @@
     </app-sidebar>
 
     <main
-      class="transition-all duration-300 flex-1 ease-in-out overflow-y-auto lg:ml-4"
+      [ngClass]="{
+        'overflow-clip': sidebar.isOpen && sidebar.isMobile,
+        'overflow-y-auto': !sidebar.isMobile || (!sidebar.isOpen && sidebar.isMobile),
+        'opacity-80': sidebar.isOpen && sidebar.isMobile,
+      }"
+      class="transition-all duration-300 flex-1 ease-in-out lg:ml-4"
     >
       <router-outlet></router-outlet>
     </main>
