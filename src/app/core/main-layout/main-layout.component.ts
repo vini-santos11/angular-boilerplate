@@ -5,10 +5,11 @@ import { SidebarItemComponent } from '../../../shared/components/sidebar/sidebar
 import { RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { TranslatePipe } from '@ngx-translate/core';
+import { LoggedHeaderComponent } from "../../../shared/components/logged-header/logged-header.component";
 
 @Component({
   selector: 'app-main-layout',
-  imports: [SidebarComponent, SidebarItemComponent, RouterOutlet, LucideAngularModule, CommonModule, TranslatePipe],
+  imports: [SidebarComponent, SidebarItemComponent, RouterOutlet, LucideAngularModule, CommonModule, TranslatePipe, LoggedHeaderComponent],
   templateUrl: './main-layout.component.html',
   styleUrl: './main-layout.component.css'
 })

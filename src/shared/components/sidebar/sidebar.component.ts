@@ -1,4 +1,4 @@
-import { ChevronLeft, ChevronRight, LucideAngularModule } from 'lucide-angular';
+import { ChevronLeft, ChevronRight, LucideAngularModule, Menu } from 'lucide-angular';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { Component, Inject, PLATFORM_ID } from '@angular/core';
 
@@ -11,6 +11,7 @@ import { Component, Inject, PLATFORM_ID } from '@angular/core';
 export class SidebarComponent {
   readonly ChevronRight = ChevronRight;
   readonly ChevronLeft = ChevronLeft;
+  readonly Menu = Menu;
 
   collapsed = false;
   hoverExpanded = false;
