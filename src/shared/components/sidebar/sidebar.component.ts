@@ -38,7 +38,7 @@ export class SidebarComponent {
 
   handleToggleButton() {
     if (this.isMobile) {
-      this.isOpen = false;
+      this.toggleSidebar();
     } else {
       this.toggleCollapse();
     }
