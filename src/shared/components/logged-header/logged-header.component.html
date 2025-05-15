@@ -12,4 +12,47 @@
       <img class="h-15 w-auto" src="/assets/images/logo.png" alt="MMR Logo" />
     </a>
   </div>
+
+  <div class="relative mr-4">
+    <button
+      class="flex items-center gap-3 hover:bg-gray-200 px-3 py-2 rounded-lg transition"
+      (click)="toggleProfileMenu()"
+    >
+      <span class="text-sm font-medium hidden sm:inline">Marcus Vinícius</span>
+      <img class="h-9 w-9 rounded-full" [src]="image" />
+    </button>
+
+    <div
+      *ngIf="showProfileMenu"
+      class="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-lg shadow-lg z-50"
+    >
+      <button
+        class="w-full flex items-center gap-2 px-4 py-2 text-sm hover:bg-gray-100 text-left"
+        (click)="logout()"
+      >
+        <lucide-icon [img]="LogOut" class="w-4 h-4" />
+        Sair
+      </button>
+
+      <div class="flex justify-end m-2 gap-1">
+        <button (click)="setLang('pt')">
+          <img
+            src="/assets/images/brazil.png"
+            width="24"
+            height="16"
+            alt="Português"
+          />
+        </button>
+
+        <button (click)="setLang('en')">
+          <img
+            src="/assets/images/uk.png"
+            width="24"
+            height="16"
+            alt="English"
+          />
+        </button>
+      </div>
+    </div>
+  </div>
 </header>

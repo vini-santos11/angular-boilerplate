@@ -1,18 +1,38 @@
-import { Component, EventEmitter, Output } from '@angular/core';
-import { LucideAngularModule, Menu } from 'lucide-angular';
+import { CommonModule } from '@angular/common';
+import { Component, EventEmitter, inject, Output } from '@angular/core';
+import { LogOut, LucideAngularModule, Menu } from 'lucide-angular';
+import { LanguageService } from '../../../app/services/language.service';
 
 @Component({
   selector: 'app-logged-header',
-  imports: [LucideAngularModule],
+  imports: [CommonModule, LucideAngularModule],
   templateUrl: './logged-header.component.html',
   styleUrl: './logged-header.component.css'
 })
 export class LoggedHeaderComponent {
   @Output() clicked = new EventEmitter<void>();
+  image: string = 'assets/images/bluelogo.png';
+  showProfileMenu = false;
 
   readonly Menu = Menu;
+  readonly LogOut = LogOut;
+
+  private languageService = inject(LanguageService);
+  langs = this.languageService.langs;
 
   handleClick() {
     this.clicked.emit();
+  }
+
+  toggleProfileMenu() {
+    this.showProfileMenu = !this.showProfileMenu;
+  }
+
+  logout() {
+    this.showProfileMenu = false;
+  }
+
+  setLang(lang: string) {
+    this.languageService.changeLanguage(lang);
   }
 }

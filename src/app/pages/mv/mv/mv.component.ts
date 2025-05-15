@@ -5,7 +5,6 @@ import { LockKeyhole, LucideAngularModule, Mail, MousePointer2, Phone, Signature
 import { SwitchComponent } from '../../../../shared/components/switch/switch.component';
 import { InputComponent } from '../../../../shared/components/input/input.component';
 import { ButtonComponent } from '../../../../shared/components/button/button.component';
-import { LanguageService } from '../../../services/language.service';
 import { TranslatePipe } from '@ngx-translate/core';
 import { DropdownComponent } from "../../../../shared/components/dropdown/dropdown.component";
 import { CommonModule } from '@angular/common';
@@ -56,9 +55,6 @@ export class MvComponent {
   readonly Wifi=Wifi;
   readonly MousePointer2 = MousePointer2;
 
-  private languageService = inject(LanguageService);
-  langs = this.languageService.langs;
-
   options: Option[] = [
     { id: 1, name: 'Murillo Nahas' },
     { id: 2, name: 'Rafael Serinolli' },
@@ -69,10 +65,6 @@ export class MvComponent {
   ];
 
   selectedOptions: Option[] = [];
-
-  setLang(lang: string) {
-    this.languageService.changeLanguage(lang);
-  }
 
   onOptionsChange(selectedOptions: Option | Option[]) {
   }

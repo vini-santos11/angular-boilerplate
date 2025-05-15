@@ -11,17 +11,6 @@
   }"
   class="bg-primary space-y-2 text-white p-4 transition-all duration-300 ease-in-out rounded-r-2xl md:rounded-2xl"
 >
-  <!-- <button
-    *ngIf="!isMobile || isOpen"
-    (click)="handleToggleButton()"
-    class="absolute translate-x-full top-2 right-3 bg-white text-primary rounded-full w-7 h-7 flex items-center justify-center shadow-lg border border-primary"
-  >
-    <lucide-icon
-      [img]="isMobile ? ChevronLeft : collapsed ? ChevronRight : ChevronLeft"
-      class="w-4 h-4"
-    />
-  </button> -->
-
   <div class="space-y-2 overflow-y-auto h-full pr-1">
     <ng-content></ng-content>
   </div>

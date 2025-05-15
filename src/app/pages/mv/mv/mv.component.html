@@ -1,18 +1,3 @@
-<div class="flex justify-end m-2 gap-1">
-  <button (click)="setLang('pt')">
-    <img
-      src="/assets/images/brazil.png"
-      width="24"
-      height="16"
-      alt="Português"
-    />
-  </button>
-
-  <button (click)="setLang('en')">
-    <img src="/assets/images/uk.png" width="24" height="16" alt="English" />
-  </button>
-</div>
-
 <form method="post" [formGroup]="form" (ngSubmit)="send()" class="m-2">
   <app-input
     label="{{ 'name' | translate }}"
