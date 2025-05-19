@@ -10,6 +10,8 @@ import { DropdownComponent } from "../../../../shared/components/dropdown/dropdo
 import { CommonModule } from '@angular/common';
 import { TextareaComponent } from "../../../../shared/components/textarea/textarea.component";
 import { DatePickerComponent, DatePickerValue } from "../../../../shared/components/date-picker/date-picker.component";
+import { RadioButtonComponent } from '../../../../shared/components/radio-button/radio-button.component';
+import { RadioGroupComponent } from "../../../../shared/components/radio-group/radio-group.component";
 
 interface Option {
   id: number;
@@ -28,7 +30,8 @@ interface Option {
     DropdownComponent,
     CommonModule,
     TextareaComponent,
-    DatePickerComponent],
+    DatePickerComponent,
+    RadioButtonComponent, RadioGroupComponent],
   templateUrl: './mv.component.html',
   styleUrl: './mv.component.css'
 })
@@ -45,6 +48,7 @@ export class MvComponent {
     options: new FormControl([], Validators.required),
     description: new FormControl('', Validators.required),
     date: new FormControl(new Date(), Validators.required),
+    gender: new FormControl(''),
   });
 
   readonly LockKeyhole = LockKeyhole;

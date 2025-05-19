@@ -125,94 +125,26 @@
       formControlName="description"
       [control]="form.get('description')"
     />
-  </div>
 
-  <div class="flex mt-3 gap-4">
-    <app-textarea
+    <app-radio-group
+      positionLabel="top"
+      formControlName="gender"
+      [control]="form.get('gender')"
       class="flex-1 min-w-[240px]"
-      label="{{ 'description' | translate }}"
-      placeholder="{{ 'description_placeholder' | translate }}"
-      [required]="true"
-      formControlName="description"
-      [control]="form.get('description')"
-    />
-  </div>
-
-  <div class="flex mt-3 gap-4">
-    <app-textarea
-      class="flex-1 min-w-[240px]"
-      label="{{ 'description' | translate }}"
-      placeholder="{{ 'description_placeholder' | translate }}"
-      [required]="true"
-      formControlName="description"
-      [control]="form.get('description')"
-    />
-  </div>
-
-  <div class="flex mt-3 gap-4">
-    <app-textarea
-      class="flex-1 min-w-[240px]"
-      label="{{ 'description' | translate }}"
-      placeholder="{{ 'description_placeholder' | translate }}"
-      [required]="true"
-      formControlName="description"
-      [control]="form.get('description')"
-    />
-  </div>
-
-  <div class="flex mt-3 gap-4">
-    <app-textarea
-      class="flex-1 min-w-[240px]"
-      label="{{ 'description' | translate }}"
-      placeholder="{{ 'description_placeholder' | translate }}"
-      [required]="true"
-      formControlName="description"
-      [control]="form.get('description')"
-    />
-  </div>
-
-  <div class="flex mt-3 gap-4">
-    <app-textarea
-      class="flex-1 min-w-[240px]"
-      label="{{ 'description' | translate }}"
-      placeholder="{{ 'description_placeholder' | translate }}"
-      [required]="true"
-      formControlName="description"
-      [control]="form.get('description')"
-    />
-  </div>
-
-  <div class="flex mt-3 gap-4">
-    <app-textarea
-      class="flex-1 min-w-[240px]"
-      label="{{ 'description' | translate }}"
-      placeholder="{{ 'description_placeholder' | translate }}"
-      [required]="true"
-      formControlName="description"
-      [control]="form.get('description')"
-    />
-  </div>
-
-  <div class="flex mt-3 gap-4">
-    <app-textarea
-      class="flex-1 min-w-[240px]"
-      label="{{ 'description' | translate }}"
-      placeholder="{{ 'description_placeholder' | translate }}"
-      [required]="true"
-      formControlName="description"
-      [control]="form.get('description')"
-    />
-  </div>
-
-  <div class="flex mt-3 gap-4">
-    <app-textarea
-      class="flex-1 min-w-[240px]"
-      label="{{ 'description' | translate }}"
-      placeholder="{{ 'description_placeholder' | translate }}"
-      [required]="true"
-      formControlName="description"
-      [control]="form.get('description')"
-    />
+    >
+      <app-radio-button
+        [checkedValue]="'Masculino'"
+        label="Masculino"
+      ></app-radio-button>
+      <app-radio-button
+        [checkedValue]="'Feminino'"
+        label="Feminino"
+      ></app-radio-button>
+      <app-radio-button
+        [checkedValue]="'Outro'"
+        label="Outro"
+      ></app-radio-button>
+    </app-radio-group>
   </div>
 
   <div
