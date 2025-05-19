@@ -127,10 +127,10 @@
     />
 
     <app-radio-group
-      positionLabel="top"
       formControlName="gender"
       [control]="form.get('gender')"
-      class="flex-1 min-w-[240px]"
+      labelPosition="right"
+      class="flex-1 min-w-[240px] mt-4"
     >
       <app-radio-button
         [checkedValue]="'Masculino'"
