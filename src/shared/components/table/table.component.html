@@ -1,51 +1,53 @@
-<div class="overflow-x-auto rounded-xl border border-primary-400 text-black">
+<div class="overflow-x-auto rounded-xl border border-gray-200 text-black">
   <table class="min-w-full text-sm">
-    <!-- Table Header -->
-    <thead class="bg-primary text-left text-white uppercase">
-      <tr>
-        <th *ngFor="let col of columns" class="px-6 py-4 font-medium">
+    <!-- Header -->
+    <thead class="bg-white text-left">
+      <tr class="border-b border-gray-200">
+        <th
+          *ngFor="let col of columns"
+          class="px-4 py-3 font-medium text-gray-500"
+        >
           {{ col.label }}
         </th>
-        <th *ngIf="actions?.length" class="px-6 py-4 font-medium text-right">
-          Actions
+        <th
+          *ngIf="actions?.length"
+          class="px-4 py-3 font-medium text-right text-gray-500"
+        >
+          {{ "actions" | translate }}
         </th>
       </tr>
     </thead>
 
-    <!-- Table Body -->
+    <!-- Body -->
     <tbody>
       <tr
         *ngFor="let item of data; let i = index"
-        [ngClass]="{
-          'bg-white': i % 2 === 0,
-          'bg-gray-50': i % 2 !== 0,
-        }"
-        class="border-b bg-white border-none hover:bg-gray-300 transition duration-200"
+        class="border-b border-gray-100 hover:bg-primary-100 transition"
       >
-        <td *ngFor="let col of columns" class="px-6 py-4">
+        <td *ngFor="let col of columns" class="px-4 py-3">
           {{ item[col.key] }}
         </td>
 
         <!-- Ações -->
-        <td *ngIf="actions?.length" class="px-6 py-4 text-right relative">
+        <td *ngIf="actions?.length" class="px-4 py-3 text-right relative">
           <button
             (click)="toggleMenu(item)"
-            class="p-1 hover:bg-gray-200 rounded"
+            class="p-2 hover:bg-primary-100 rounded-full"
           >
             <lucide-icon
               [img]="EllipsisVertical"
-              class="w-5 h-5 text-black"
+              class="w-5 h-5 text-gray-600"
             ></lucide-icon>
           </button>
 
           <!-- Dropdown -->
           <div
             *ngIf="item === activeMenuItem"
-            class="fixed right-0 mt-2 w-48 bg-white border border-gray-200 rounded-lg shadow-lg z-50"
+            class="absolute right-0 mt-2 w-44 bg-white border border-gray-200 rounded-lg shadow-md z-50"
           >
             <button
               *ngFor="let action of actions"
-              class="block w-full text-left px-4 py-2 hover:bg-gray-100"
+              class="block w-full text-left px-4 py-2 hover:bg-primary-100 text-sm text-gray-700"
               (click)="runAction(action, item)"
             >
               {{ action.label }}
@@ -55,33 +57,35 @@
       </tr>
     </tbody>
   </table>
+
+  <!-- Footer -->
   <div
     *ngIf="pagination"
-    class="flex items-center justify-between px-4 py-3 text-black text-sm rounded-b-xl border-t border-primary-400"
+    class="flex flex-wrap md:flex-nowrap items-center justify-between gap-2 px-4 py-3 bg-white text-sm border-t border-gray-200"
   >
     <!-- Info -->
-    <div>
-      Showing {{ currentRange.start }}–{{ currentRange.end }} of
+    <div class="text-gray-600">
+      {{ currentRange.start }}–{{ currentRange.end }} {{ "of" | translate }}
       {{ pagination.total }}
     </div>
 
-    <!-- Controls -->
+    <!-- Pagination -->
     <div class="flex items-center gap-1">
       <button
-        class="px-2 py-1 rounded hover:bg-primary-200"
+        class="p-2 rounded hover:bg-primary-100"
         [disabled]="pagination.page === 1"
         (click)="changePage(pagination.page - 1)"
       >
-        « Prev
+        <lucide-icon [img]="ChevronLeft" class="w-4 h-4 text-gray-600" />
       </button>
 
       <ng-container
         *ngFor="let page of [].constructor(totalPages); let i = index"
       >
         <button
-          class="px-3 py-1 rounded hover:bg-primary-200"
+          class="px-3 py-1 rounded hover:bg-primary-100"
           [ngClass]="{
-            'bg-primary-300 font-semibold': pagination.page === i + 1
+            'bg-primary-200 font-semibold': pagination.page === i + 1
           }"
           (click)="changePage(i + 1)"
         >
@@ -90,12 +94,25 @@
       </ng-container>
 
       <button
-        class="px-2 py-1 rounded hover:bg-primary-200"
+        class="p-2 rounded hover:bg-primary-100"
         [disabled]="pagination.page === totalPages"
         (click)="changePage(pagination.page + 1)"
       >
-        Next »
+        <lucide-icon [img]="ChevronRight" class="w-4 h-4 text-gray-600" />
       </button>
+    </div>
+
+    <!-- Items per page -->
+    <div class="flex items-center gap-2">
+      <select
+        class="border border-gray-200 rounded px-2 py-1 bg-white hover:bg-primary-100"
+        [value]="pagination.pageSize"
+        (change)="changePageSize($any($event.target).value)"
+      >
+        <option *ngFor="let size of pageSizeOptions" [value]="size">
+          {{ size }}
+        </option>
+      </select>
     </div>
   </div>
 </div>

@@ -1,7 +1,8 @@
 <app-table
   [columns]="columns"
-  [data]="pagedProducts"
+  [data]="products"
   [actions]="actions"
   [pagination]="pagination"
   (pageChange)="pageChanged($event)"
+  (pageSizeChange)="pageSizeChanged($event)"
 ></app-table>

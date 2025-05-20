@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, inject, Output } from '@angular/core';
+import { Component, ElementRef, EventEmitter, HostListener, inject, Output } from '@angular/core';
 import { LogOut, LucideAngularModule, Menu } from 'lucide-angular';
 import { LanguageService } from '../../../app/services/language.service';
 
@@ -20,6 +20,8 @@ export class LoggedHeaderComponent {
   private languageService = inject(LanguageService);
   langs = this.languageService.langs;
 
+  constructor(private eRef: ElementRef) { }
+
   handleClick() {
     this.clicked.emit();
   }
@@ -34,5 +36,12 @@ export class LoggedHeaderComponent {
 
   setLang(lang: string) {
     this.languageService.changeLanguage(lang);
+  }
+
+  @HostListener('document:click', ['$event'])
+  onClickOutside(event: MouseEvent) {
+    if (!this.eRef.nativeElement.contains(event.target)) {
+      this.showProfileMenu = false;
+    }
   }
 }

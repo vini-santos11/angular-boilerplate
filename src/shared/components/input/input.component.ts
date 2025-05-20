@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { Component, ElementRef, forwardRef, inject, Input, Optional, Self, ViewChild } from '@angular/core';
+import { Component, ElementRef, forwardRef, Input } from '@angular/core';
 import { MaskDirective } from '../../directives/mask.directive';
-import { AbstractControl, ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR, NgControl, ReactiveFormsModule } from '@angular/forms';
+import { AbstractControl, ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR, ReactiveFormsModule } from '@angular/forms';
 import { Eye, EyeOff, LucideAngularModule } from 'lucide-angular';
 import { TranslateService } from '@ngx-translate/core';
 

@@ -1,7 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { Component, ElementRef, EventEmitter, HostListener, Input, Output } from '@angular/core';
-import { LucideAngularModule } from 'lucide-angular';
+import { TranslatePipe } from '@ngx-translate/core';
+import { LucideAngularModule, ChevronLeft, ChevronRight } from 'lucide-angular';
 import { EllipsisVertical } from 'lucide-angular';
+import { DropdownComponent } from "../dropdown/dropdown.component";
 
 export interface TableAction {
   label: string;
@@ -16,7 +18,7 @@ export interface Pagination {
 
 @Component({
   selector: 'app-table',
-  imports: [CommonModule, LucideAngularModule],
+  imports: [CommonModule, LucideAngularModule, TranslatePipe],
   templateUrl: './table.component.html',
   styleUrl: './table.component.css'
 })
@@ -27,25 +29,35 @@ export class TableComponent {
   @Input() actions: TableAction[] = [];
   @Input() pagination!: Pagination;
   @Output() pageChange = new EventEmitter<number>();
+  @Output() pageSizeChange = new EventEmitter<number>();
 
   readonly EllipsisVertical = EllipsisVertical;
+  readonly ChevronLeft = ChevronLeft;
+  readonly ChevronRight = ChevronRight;
 
-  activeMenuItem: any = null;
+  activeMenuItem: boolean = false;
+  pageSizeOptions: number[] = [5, 10, 20, 50];
 
   constructor(private eRef: ElementRef) {}
 
-  toggleMenu(item: any) {
-    this.activeMenuItem = this.activeMenuItem === item ? null : item;
+  toggleMenu(item: boolean) {
+    this.activeMenuItem = this.activeMenuItem === item ? false : item;
   }
 
-  runAction(action: TableAction, item: any) {
+  runAction(action: TableAction, item: boolean) {
     action.callback(item);
-    this.activeMenuItem = null;
+    this.activeMenuItem = false;
   }
 
   changePage(page: number) {
     if (page !== this.pagination.page) {
       this.pageChange.emit(page);
+    }
+  }
+
+  changePageSize(size: number) {
+    if (size !== this.pagination.pageSize) {
+      this.pageSizeChange.emit(size);
     }
   }
 
@@ -62,7 +74,7 @@ export class TableComponent {
   @HostListener('document:click', ['$event'])
   onClickOutside(event: MouseEvent) {
     if (!this.eRef.nativeElement.contains(event.target)) {
-      this.activeMenuItem = null;
+      this.activeMenuItem = false;
     }
   }
 }

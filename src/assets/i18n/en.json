@@ -60,5 +60,10 @@
   "hour": "Hour",
   "minute": "Minute",
   "settings": "Settings",
-  "home": "Home"
+  "home": "Home",
+  "showing": "Showing",
+  "of": "of",
+  "previous": "Previous",
+  "next": "Next",
+  "actions": "Actions"
 }

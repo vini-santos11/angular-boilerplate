@@ -60,5 +60,10 @@
   "hour": "Hora",
   "minute": "Minuto",
   "settings": "Configurações",
-  "home": "Início"
+  "home": "Início",
+  "showing": "Mostrando",
+  "of": "de",
+  "previous": "Anterior",
+  "next": "Próximo",
+  "actions": "Ações"
 }
