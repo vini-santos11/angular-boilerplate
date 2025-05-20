@@ -1,0 +1,101 @@
+<div class="overflow-x-auto rounded-xl border border-primary-400 text-black">
+  <table class="min-w-full text-sm">
+    <!-- Table Header -->
+    <thead class="bg-primary text-left text-white uppercase">
+      <tr>
+        <th *ngFor="let col of columns" class="px-6 py-4 font-medium">
+          {{ col.label }}
+        </th>
+        <th *ngIf="actions?.length" class="px-6 py-4 font-medium text-right">
+          Actions
+        </th>
+      </tr>
+    </thead>
+
+    <!-- Table Body -->
+    <tbody>
+      <tr
+        *ngFor="let item of data; let i = index"
+        [ngClass]="{
+          'bg-white': i % 2 === 0,
+          'bg-gray-50': i % 2 !== 0,
+        }"
+        class="border-b bg-white border-none hover:bg-gray-300 transition duration-200"
+      >
+        <td *ngFor="let col of columns" class="px-6 py-4">
+          {{ item[col.key] }}
+        </td>
+
+        <!-- Ações -->
+        <td *ngIf="actions?.length" class="px-6 py-4 text-right relative">
+          <button
+            (click)="toggleMenu(item)"
+            class="p-1 hover:bg-gray-200 rounded"
+          >
+            <lucide-icon
+              [img]="EllipsisVertical"
+              class="w-5 h-5 text-black"
+            ></lucide-icon>
+          </button>
+
+          <!-- Dropdown -->
+          <div
+            *ngIf="item === activeMenuItem"
+            class="fixed right-0 mt-2 w-48 bg-white border border-gray-200 rounded-lg shadow-lg z-50"
+          >
+            <button
+              *ngFor="let action of actions"
+              class="block w-full text-left px-4 py-2 hover:bg-gray-100"
+              (click)="runAction(action, item)"
+            >
+              {{ action.label }}
+            </button>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <div
+    *ngIf="pagination"
+    class="flex items-center justify-between px-4 py-3 text-black text-sm rounded-b-xl border-t border-primary-400"
+  >
+    <!-- Info -->
+    <div>
+      Showing {{ currentRange.start }}–{{ currentRange.end }} of
+      {{ pagination.total }}
+    </div>
+
+    <!-- Controls -->
+    <div class="flex items-center gap-1">
+      <button
+        class="px-2 py-1 rounded hover:bg-primary-200"
+        [disabled]="pagination.page === 1"
+        (click)="changePage(pagination.page - 1)"
+      >
+        « Prev
+      </button>
+
+      <ng-container
+        *ngFor="let page of [].constructor(totalPages); let i = index"
+      >
+        <button
+          class="px-3 py-1 rounded hover:bg-primary-200"
+          [ngClass]="{
+            'bg-primary-300 font-semibold': pagination.page === i + 1
+          }"
+          (click)="changePage(i + 1)"
+        >
+          {{ i + 1 }}
+        </button>
+      </ng-container>
+
+      <button
+        class="px-2 py-1 rounded hover:bg-primary-200"
+        [disabled]="pagination.page === totalPages"
+        (click)="changePage(pagination.page + 1)"
+      >
+        Next »
+      </button>
+    </div>
+  </div>
+</div>

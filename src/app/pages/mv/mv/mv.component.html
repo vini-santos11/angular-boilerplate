@@ -125,8 +125,14 @@
       formControlName="description"
       [control]="form.get('description')"
     />
-
-    <app-radio-group
+    <app-checkbox
+      label="Aceito os termos"
+      labelColor="primary"
+      labelPosition="bottom"
+      checkboxColor="primary"
+      checkboxSize="large"
+    />
+    <!-- <app-radio-group
       formControlName="gender"
       [control]="form.get('gender')"
       labelPosition="right"
@@ -144,7 +150,7 @@
         [checkedValue]="'Outro'"
         label="Outro"
       ></app-radio-button>
-    </app-radio-group>
+    </app-radio-group> -->
   </div>
 
   <div

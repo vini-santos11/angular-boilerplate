@@ -12,6 +12,7 @@ import { TextareaComponent } from "../../../../shared/components/textarea/textar
 import { DatePickerComponent, DatePickerValue } from "../../../../shared/components/date-picker/date-picker.component";
 import { RadioButtonComponent } from '../../../../shared/components/radio-button/radio-button.component';
 import { RadioGroupComponent } from "../../../../shared/components/radio-group/radio-group.component";
+import { CheckboxComponent } from "../../../../shared/components/checkbox/checkbox/checkbox.component";
 
 interface Option {
   id: number;
@@ -31,7 +32,7 @@ interface Option {
     CommonModule,
     TextareaComponent,
     DatePickerComponent,
-    RadioButtonComponent, RadioGroupComponent],
+    RadioButtonComponent, RadioGroupComponent, CheckboxComponent],
   templateUrl: './mv.component.html',
   styleUrl: './mv.component.css'
 })

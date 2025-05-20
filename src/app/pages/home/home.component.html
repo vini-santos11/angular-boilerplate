@@ -1,9 +1,7 @@
-<div class="h-full w-full flex items-center justify-center">
-  <app-checkbox
-    label="Aceito os termos"
-    labelColor="primary"
-    labelPosition="bottom"
-    checkboxColor="primary"
-    checkboxSize="large"
-  />
-</div>
+<app-table
+  [columns]="columns"
+  [data]="pagedProducts"
+  [actions]="actions"
+  [pagination]="pagination"
+  (pageChange)="pageChanged($event)"
+></app-table>
