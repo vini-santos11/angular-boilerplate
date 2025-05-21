@@ -13,6 +13,7 @@ import { DatePickerComponent, DatePickerValue } from "../../../../shared/compone
 import { RadioButtonComponent } from '../../../../shared/components/radio-button/radio-button.component';
 import { RadioGroupComponent } from "../../../../shared/components/radio-group/radio-group.component";
 import { CheckboxComponent } from "../../../../shared/components/checkbox/checkbox/checkbox.component";
+import { CardComponent } from "../../../../shared/components/card/card.component";
 
 interface Option {
   id: number;
@@ -32,7 +33,7 @@ interface Option {
     CommonModule,
     TextareaComponent,
     DatePickerComponent,
-    RadioButtonComponent, RadioGroupComponent, CheckboxComponent],
+    CheckboxComponent, CardComponent],
   templateUrl: './mv.component.html',
   styleUrl: './mv.component.css'
 })

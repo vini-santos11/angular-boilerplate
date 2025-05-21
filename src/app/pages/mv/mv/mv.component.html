@@ -1,167 +1,169 @@
-<form method="post" [formGroup]="form" (ngSubmit)="send()" class="m-2">
-  <app-input
-    label="{{ 'name' | translate }}"
-    placeholder="{{ 'name_placeholder' | translate }}"
-    [required]="true"
-    type="text"
-    class="flex-1 min-w-[240px] mt-3"
-    [icon]="User"
-    formControlName="name"
-    [control]="form.get('name')"
-  />
-
-  <div class="flex gap-4 mt-3 flex-wrap">
+<app-card class="bg-amber-400">
+  <form method="post" [formGroup]="form" (ngSubmit)="send()" class="m-2">
     <app-input
-      class="flex-1 min-w-[240px]"
-      label="{{ 'document' | translate }}"
-      placeholder="{{ 'document_placeholder' | translate }}"
+      label="{{ 'name' | translate }}"
+      placeholder="{{ 'name_placeholder' | translate }}"
       [required]="true"
       type="text"
-      mask="000.000.000-00"
-      [icon]="Signature"
-      formControlName="document"
-      [control]="form.get('document')"
+      class="flex-1 min-w-[240px] mt-3"
+      [icon]="User"
+      formControlName="name"
+      [control]="form.get('name')"
     />
 
-    <app-input
-      class="flex-1 min-w-[240px]"
-      label="{{ 'phone' | translate }}"
-      placeholder="{{ 'phone_placeholder' | translate }}"
-      [required]="true"
-      type="text"
-      mask="(00) 00000-0000"
-      [icon]="Phone"
-      formControlName="phone"
-      [control]="form.get('phone')"
-    />
+    <div class="flex gap-4 mt-3 flex-wrap">
+      <app-input
+        class="flex-1 min-w-[240px]"
+        label="{{ 'document' | translate }}"
+        placeholder="{{ 'document_placeholder' | translate }}"
+        [required]="true"
+        type="text"
+        mask="000.000.000-00"
+        [icon]="Signature"
+        formControlName="document"
+        [control]="form.get('document')"
+      />
 
-    <app-input
-      class="w-full"
-      label="{{ 'email' | translate }}"
-      placeholder="{{ 'email_placeholder' | translate }}"
-      [required]="true"
-      type="text"
-      [icon]="Mail"
-      formControlName="email"
-      [control]="form.get('email')"
-    />
-  </div>
+      <app-input
+        class="flex-1 min-w-[240px]"
+        label="{{ 'phone' | translate }}"
+        placeholder="{{ 'phone_placeholder' | translate }}"
+        [required]="true"
+        type="text"
+        mask="(00) 00000-0000"
+        [icon]="Phone"
+        formControlName="phone"
+        [control]="form.get('phone')"
+      />
 
-  <div class="flex gap-4 mt-3 flex-wrap">
-    <app-input
-      class="flex-1 min-w-[240px]"
-      label="{{ 'password' | translate }}"
-      placeholder="{{ 'password_placeholder' | translate }}"
-      [required]="true"
-      type="password"
-      [icon]="LockKeyhole"
-      formControlName="password"
-      [control]="form.get('password')"
-    />
+      <app-input
+        class="w-full"
+        label="{{ 'email' | translate }}"
+        placeholder="{{ 'email_placeholder' | translate }}"
+        [required]="true"
+        type="text"
+        [icon]="Mail"
+        formControlName="email"
+        [control]="form.get('email')"
+      />
+    </div>
 
-    <app-input
-      class="flex-1 min-w-[240px]"
-      label="{{ 'confirm_password' | translate }}"
-      placeholder="{{ 'confirm_password_placeholder' | translate }}"
-      [required]="true"
-      type="password"
-      [icon]="LockKeyhole"
-      formControlName="confirmPassword"
-      [control]="form.get('confirmPassword')"
-    />
-  </div>
+    <div class="flex gap-4 mt-3 flex-wrap">
+      <app-input
+        class="flex-1 min-w-[240px]"
+        label="{{ 'password' | translate }}"
+        placeholder="{{ 'password_placeholder' | translate }}"
+        [required]="true"
+        type="password"
+        [icon]="LockKeyhole"
+        formControlName="password"
+        [control]="form.get('password')"
+      />
 
-  <div class="flex gap-4 mt-3 flex-wrap">
-    <app-switch
-      class="flex-1 min-w-[240px]"
-      label="{{ 'active' | translate }}"
-      labelPosition="top"
-      formControlName="active"
-      [control]="form.get('active')"
-    />
+      <app-input
+        class="flex-1 min-w-[240px]"
+        label="{{ 'confirm_password' | translate }}"
+        placeholder="{{ 'confirm_password_placeholder' | translate }}"
+        [required]="true"
+        type="password"
+        [icon]="LockKeyhole"
+        formControlName="confirmPassword"
+        [control]="form.get('confirmPassword')"
+      />
+    </div>
 
-    <app-dropdown
-      class="flex-1 min-w-[240px]"
-      label="{{ 'options' | translate }}"
-      placeholder="{{ 'options_placeholder' | translate }}"
-      [options]="options"
-      selectionMode="multiple"
-      [selected]="selectedOptions"
-      displayField="name"
-      formControlName="options"
-      (selectionChange)="onOptionsChange($event)"
-      [control]="form.get('options')"
-    />
-    <app-date-picker
-      class="flex-1 min-w-[240px]"
-      [required]="true"
-      label="{{ 'date' | translate }}"
-      placeholder="{{ 'date_placeholder' | translate }}"
-      mode="range"
-      [showTime]="false"
-      [maxSelections]="5"
-      formControlName="date"
-      [control]="form.get('date')"
-      (dateChange)="onDateChange($event)"
-    />
-    <app-input
-      class="flex-1 min-w-[240px]"
-      label="{{ 'confirm_password' | translate }}"
-      placeholder="{{ 'confirm_password_placeholder' | translate }}"
-      [required]="true"
-      type="password"
-      [icon]="LockKeyhole"
-      formControlName="confirmPassword"
-      [control]="form.get('confirmPassword')"
-    />
-  </div>
+    <div class="flex gap-4 mt-3 flex-wrap">
+      <app-switch
+        class="flex-1 min-w-[240px]"
+        label="{{ 'active' | translate }}"
+        labelPosition="top"
+        formControlName="active"
+        [control]="form.get('active')"
+      />
 
-  <div class="flex mt-3 gap-4">
-    <app-textarea
-      class="flex-1 min-w-[240px]"
-      label="{{ 'description' | translate }}"
-      placeholder="{{ 'description_placeholder' | translate }}"
-      [required]="true"
-      formControlName="description"
-      [control]="form.get('description')"
-    />
-    <app-checkbox
-      label="Aceito os termos"
-      labelColor="primary"
-      labelPosition="bottom"
-      checkboxColor="primary"
-      checkboxSize="large"
-    />
-    <!-- <app-radio-group
-      formControlName="gender"
-      [control]="form.get('gender')"
-      labelPosition="right"
-      class="flex-1 min-w-[240px] mt-4"
+      <app-dropdown
+        class="flex-1 min-w-[240px]"
+        label="{{ 'options' | translate }}"
+        placeholder="{{ 'options_placeholder' | translate }}"
+        [options]="options"
+        selectionMode="multiple"
+        [selected]="selectedOptions"
+        displayField="name"
+        formControlName="options"
+        (selectionChange)="onOptionsChange($event)"
+        [control]="form.get('options')"
+      />
+      <app-date-picker
+        class="flex-1 min-w-[240px]"
+        [required]="true"
+        label="{{ 'date' | translate }}"
+        placeholder="{{ 'date_placeholder' | translate }}"
+        mode="range"
+        [showTime]="false"
+        [maxSelections]="5"
+        formControlName="date"
+        [control]="form.get('date')"
+        (dateChange)="onDateChange($event)"
+      />
+      <app-input
+        class="flex-1 min-w-[240px]"
+        label="{{ 'confirm_password' | translate }}"
+        placeholder="{{ 'confirm_password_placeholder' | translate }}"
+        [required]="true"
+        type="password"
+        [icon]="LockKeyhole"
+        formControlName="confirmPassword"
+        [control]="form.get('confirmPassword')"
+      />
+    </div>
+
+    <div class="flex mt-3 gap-4">
+      <app-textarea
+        class="flex-1 min-w-[240px]"
+        label="{{ 'description' | translate }}"
+        placeholder="{{ 'description_placeholder' | translate }}"
+        [required]="true"
+        formControlName="description"
+        [control]="form.get('description')"
+      />
+      <app-checkbox
+        label="Aceito os termos"
+        labelColor="primary"
+        labelPosition="bottom"
+        checkboxColor="primary"
+        checkboxSize="large"
+      />
+      <!-- <app-radio-group
+        formControlName="gender"
+        [control]="form.get('gender')"
+        labelPosition="right"
+        class="flex-1 min-w-[240px] mt-4"
+      >
+        <app-radio-button
+          [checkedValue]="'Masculino'"
+          label="Masculino"
+        ></app-radio-button>
+        <app-radio-button
+          [checkedValue]="'Feminino'"
+          label="Feminino"
+        ></app-radio-button>
+        <app-radio-button
+          [checkedValue]="'Outro'"
+          label="Outro"
+        ></app-radio-button>
+      </app-radio-group> -->
+    </div>
+
+    <div
+      class="mt-3 justify-center items-center sm:flex sm:gap-4 sm:mt-3 sm:justify-end sm:items-end"
     >
-      <app-radio-button
-        [checkedValue]="'Masculino'"
-        label="Masculino"
-      ></app-radio-button>
-      <app-radio-button
-        [checkedValue]="'Feminino'"
-        label="Feminino"
-      ></app-radio-button>
-      <app-radio-button
-        [checkedValue]="'Outro'"
-        label="Outro"
-      ></app-radio-button>
-    </app-radio-group> -->
-  </div>
-
-  <div
-    class="mt-3 justify-center items-center sm:flex sm:gap-4 sm:mt-3 sm:justify-end sm:items-end"
-  >
-    <app-button
-      type="submit"
-      variant="filled"
-      mode="textAndIcon"
-      text="{{ 'submit' | translate }}"
-      [icon]="MousePointer2"
-    />
-  </div>
-</form>
+      <app-button
+        type="submit"
+        variant="filled"
+        mode="textAndIcon"
+        text="{{ 'submit' | translate }}"
+        [icon]="MousePointer2"
+      />
+    </div>
+  </form>
+</app-card>

@@ -1,0 +1,15 @@
+<div
+  class="rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition p-4 md:p-6 w-full"
+  [ngClass]="class"
+>
+  <div *ngIf="title || description" class="mb-4">
+    <h2 *ngIf="title" class="text-lg font-semibold text-black">
+      {{ title }}
+    </h2>
+    <p *ngIf="description" class="text-sm text-gray-500 mt-1">
+      {{ description }}
+    </p>
+  </div>
+
+  <ng-content></ng-content>
+</div>
