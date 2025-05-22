@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, ElementRef, Input, ViewChild } from '@angular/core';
 import { LucideAngularModule } from 'lucide-angular';
 
 @Component({
@@ -18,8 +18,11 @@ export class ButtonComponent {
   @Input() icon?: any;
   @Input() text?: string;
   @Input() iconPosition: 'left' | 'right' = 'left';
+  @ViewChild('button', { static: true}) buttonRef!: ElementRef;
 
-
+  get nativeElement() {
+    return this.buttonRef.nativeElement;
+  }
 
   get variantClass(): string {
     switch (this.variant) {

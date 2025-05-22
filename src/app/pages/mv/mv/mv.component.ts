@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, ElementRef, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { LockKeyhole, LucideAngularModule, Mail, MousePointer2, Phone, Signature, User, Wifi } from 'lucide-angular';
@@ -10,11 +10,9 @@ import { DropdownComponent } from "../../../../shared/components/dropdown/dropdo
 import { CommonModule } from '@angular/common';
 import { TextareaComponent } from "../../../../shared/components/textarea/textarea.component";
 import { DatePickerComponent, DatePickerValue } from "../../../../shared/components/date-picker/date-picker.component";
-import { RadioButtonComponent } from '../../../../shared/components/radio-button/radio-button.component';
-import { RadioGroupComponent } from "../../../../shared/components/radio-group/radio-group.component";
 import { CheckboxComponent } from "../../../../shared/components/checkbox/checkbox/checkbox.component";
 import { CardComponent } from "../../../../shared/components/card/card.component";
-import { ToastService } from '../../../../shared/components/toast/toast.service';
+import { BasePage } from '../../../helpers/base-page';
 
 interface Option {
   id: number;
@@ -39,7 +37,7 @@ interface Option {
   styleUrl: './mv.component.css'
 })
 
-export class MvComponent {
+export class MvComponent extends BasePage {
   public form = new FormGroup({
     name: new FormControl('', Validators.required),
     email: new FormControl('', Validators.email),
@@ -73,8 +71,6 @@ export class MvComponent {
 
   selectedOptions: Option[] = [];
 
-  constructor(private toastService: ToastService) {}
-
   onOptionsChange(selectedOptions: Option | Option[]) {
   }
 
@@ -84,18 +80,9 @@ export class MvComponent {
 
   send() {
     if (this.form.valid) {
-      this.toastService.show({
-        message: 'Formulário enviado com sucesso!',
-        variant: 'success',
-        duration: 3000,
-      });
+      this.showToast('Formulário enviado com sucesso!', 'success', 3000);
     } else {
-      this.toastService.show({
-        message: 'Preencha todos os campos obrigatórios.',
-        class: 'bg-amber-500/90 text-white',
-        variant: 'danger',
-        duration: 3000,
-      });
+      this.showToast('Preencha todos os campos obrigatórios!', 'danger', 3000);
     }
   }
 }

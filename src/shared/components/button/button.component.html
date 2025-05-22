@@ -1,21 +1,15 @@
-<button [ngClass]="combinedClasses" [type]="type">
+<button #button [ngClass]="combinedClasses" [type]="type">
   @if (mode === 'icon' && icon) {
-    <lucide-icon [img]="icon"  [size]="iconSize" />
+  <lucide-icon [img]="icon" [size]="iconSize" />
+  } @if (mode === 'text' && text) {
+  {{ text }}
+  } @if (mode === 'textAndIcon') { @if (icon && iconPosition === 'left') {
+  <lucide-icon [img]="icon" [size]="iconSize" />
   }
 
-  @if (mode === 'text' && text) {
-    {{ text }}
-  }
+  {{ text }}
 
-  @if (mode === 'textAndIcon') {
-    @if (icon && iconPosition === 'left') {
-      <lucide-icon [img]="icon" [size]="iconSize" />
-    }
-
-    {{ text }}
-
-    @if (icon && iconPosition === 'right') {
-      <lucide-icon [img]="icon" [size]="iconSize"  />
-    }
-  }
+  @if (icon && iconPosition === 'right') {
+  <lucide-icon [img]="icon" [size]="iconSize" />
+  } }
 </button>
