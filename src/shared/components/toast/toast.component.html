@@ -1,0 +1,17 @@
+<div
+  class="rounded-lg shadow-md px-4 py-3 flex items-center gap-2 animate-slide-up relative"
+  [ngClass]="[
+    variantClasses,
+    class,
+    exiting ? 'animate-slide-down' : 'animate-slide-up'
+  ]"
+>
+  <div class="flex-1 text-sm font-medium">
+    {{ message }}
+  </div>
+
+  <!-- Botão de fechar -->
+  <button class="p-1 rounded hover:bg-white/20" (click)="onClose()">
+    <lucide-icon [img]="X" class="w-4 h-4" />
+  </button>
+</div>

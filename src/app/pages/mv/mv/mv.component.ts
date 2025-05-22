@@ -14,6 +14,7 @@ import { RadioButtonComponent } from '../../../../shared/components/radio-button
 import { RadioGroupComponent } from "../../../../shared/components/radio-group/radio-group.component";
 import { CheckboxComponent } from "../../../../shared/components/checkbox/checkbox/checkbox.component";
 import { CardComponent } from "../../../../shared/components/card/card.component";
+import { ToastService } from '../../../../shared/components/toast/toast.service';
 
 interface Option {
   id: number;
@@ -72,6 +73,8 @@ export class MvComponent {
 
   selectedOptions: Option[] = [];
 
+  constructor(private toastService: ToastService) {}
+
   onOptionsChange(selectedOptions: Option | Option[]) {
   }
 
@@ -80,6 +83,19 @@ export class MvComponent {
   }
 
   send() {
-
+    if (this.form.valid) {
+      this.toastService.show({
+        message: 'Formulário enviado com sucesso!',
+        variant: 'success',
+        duration: 3000,
+      });
+    } else {
+      this.toastService.show({
+        message: 'Preencha todos os campos obrigatórios.',
+        class: 'bg-amber-500/90 text-white',
+        variant: 'danger',
+        duration: 3000,
+      });
+    }
   }
 }

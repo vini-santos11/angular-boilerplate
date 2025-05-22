@@ -1,6 +1,6 @@
 <div
   class="rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition p-4 md:p-6 w-full"
-  [ngClass]="class"
+  [ngClass]="[variantClasses, class]"
 >
   <div *ngIf="title || description" class="mb-4">
     <h2 *ngIf="title" class="text-lg font-semibold text-black">
