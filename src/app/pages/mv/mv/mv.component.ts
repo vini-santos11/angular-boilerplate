@@ -13,6 +13,8 @@ import { DatePickerComponent, DatePickerValue } from "../../../../shared/compone
 import { CheckboxComponent } from "../../../../shared/components/checkbox/checkbox/checkbox.component";
 import { CardComponent } from "../../../../shared/components/card/card.component";
 import { BasePage } from '../../../helpers/base-page';
+import { TabItemComponent } from '../../../../shared/components/tabs/tab-item/tab-item.component';
+import { TabsComponent } from '../../../../shared/components/tabs/tabs.component';
 
 interface Option {
   id: number;
@@ -32,7 +34,11 @@ interface Option {
     CommonModule,
     TextareaComponent,
     DatePickerComponent,
-    CheckboxComponent, CardComponent],
+    CheckboxComponent,
+    CardComponent,
+    TabsComponent,
+    TabItemComponent
+  ],
   templateUrl: './mv.component.html',
   styleUrl: './mv.component.css'
 })
@@ -84,5 +90,9 @@ export class MvComponent extends BasePage {
     } else {
       this.showToast('Preencha todos os campos obrigatórios!', 'danger', 3000);
     }
+  }
+
+  tabChanged(index: number) {
+    console.log('A aba selecionada é: ', index);
   }
 }

@@ -1,6 +1,7 @@
 @import "tailwindcss";
 
 
+/* default-theme */
 @theme {
   --color-primary: #232264;
   --color-primary-100: #c1b2ff;
@@ -13,6 +14,30 @@
   --color-success: #00FF3D;
   --color-warning: #FF9A00;
 }
+
+/* dark-theme */
+/* @theme {
+  --color-primary: #6366F1;
+  --color-secondary: #14B8A6;
+  --color-text: #F1F5F9;
+  --color-border: #334155;
+  --color-background: #0F172A;
+  --color-error: #FF3D00;
+  --color-success: #00FF3D;
+  --color-warning: #FF9A00;
+} */
+
+/* soft-theme */
+/* @theme {
+  --color-primary: #7C3AED;
+  --color-secondary: #06B6D4;
+  --color-text: #0F172A;
+  --color-border: #334155;
+  --color-background: #FDFDFD;
+  --color-error: #FF3D00;
+  --color-success: #00FF3D;
+  --color-warning: #FF9A00;
+} */
 
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
