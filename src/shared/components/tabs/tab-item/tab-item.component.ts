@@ -9,5 +9,6 @@ import { Component, Input } from '@angular/core';
 })
 export class TabItemComponent {
   @Input() title: string = '';
+  @Input() icon: any;
   active = false;
 }

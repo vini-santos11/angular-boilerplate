@@ -1,10 +1,11 @@
 import { AfterContentInit, Component, ContentChildren, EventEmitter, Input, Output, QueryList } from '@angular/core';
 import { TabItemComponent } from './tab-item/tab-item.component';
 import { CommonModule } from '@angular/common';
+import { LucideAngularModule } from 'lucide-angular';
 
 @Component({
   selector: 'app-tabs',
-  imports: [CommonModule],
+  imports: [CommonModule, LucideAngularModule],
   templateUrl: './tabs.component.html',
   styleUrl: './tabs.component.css'
 })

@@ -1,5 +1,5 @@
 <app-tabs (onChange)="tabChanged($event)">
-  <app-tab-item title="Formulário">
+  <app-tab-item title="Formulário" [icon]="FileText">
     <app-card class="bg-white">
       <form method="post" [formGroup]="form" (ngSubmit)="send()" class="m-2">
         <app-input

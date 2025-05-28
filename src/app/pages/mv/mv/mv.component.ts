@@ -1,7 +1,7 @@
 import { Component, ElementRef, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { LockKeyhole, LucideAngularModule, Mail, MousePointer2, Phone, Signature, User, Wifi } from 'lucide-angular';
+import { FileText, LockKeyhole, LucideAngularModule, Mail, MousePointer2, Phone, Signature, User, Wifi } from 'lucide-angular';
 import { SwitchComponent } from '../../../../shared/components/switch/switch.component';
 import { InputComponent } from '../../../../shared/components/input/input.component';
 import { ButtonComponent } from '../../../../shared/components/button/button.component';
@@ -65,6 +65,7 @@ export class MvComponent extends BasePage {
   readonly Signature = Signature;
   readonly Wifi=Wifi;
   readonly MousePointer2 = MousePointer2;
+  readonly FileText = FileText
 
   options: Option[] = [
     { id: 1, name: 'Murillo Nahas' },
