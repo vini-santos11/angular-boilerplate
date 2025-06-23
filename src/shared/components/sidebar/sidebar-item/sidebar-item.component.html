@@ -1,6 +1,6 @@
 <a
   *ngIf="!hasChildren"
-  class="flex items-center gap-3 px-1 py-2 rounded-lg text-sm transition"
+  class="flex items-center gap-3 px-1 py-2 rounded-lg text-sm transition mb-2"
   [routerLink]="routerLink"
   [ngClass]="{
     'bg-[var(--primary-200)]': isActive,
@@ -15,7 +15,7 @@
   >
 </a>
 
-<div *ngIf="hasChildren">
+<div *ngIf="hasChildren" class="mb-2">
   <button
     (click)="toggle()"
     class="flex items-center justify-between w-full px-1 py-2 rounded-lg text-sm transition"
