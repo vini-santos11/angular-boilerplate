@@ -27,20 +27,13 @@ export class ButtonComponent {
   get variantClass(): string {
     switch (this.variant) {
       case 'filled':
-        return this.color === 'secondary'
-          ? 'bg-secondary text-white hover:bg-secondary/80'
-          : 'bg-primary text-white hover:bg-primary/80';
-
+        return 'bg-[var(--primary)] text-[var(--white)] hover:bg-[var(--primary-400)] dark:bg-[var(--primary)] dark:hover:bg-[var(--primary-400)]';
       case 'outlined':
-        return this.color === 'secondary'
-          ? 'border border-secondary text-secondary hover:bg-secondary/10'
-          : 'border border-primary text-primary hover:bg-primary/10';
-
+        return 'border border-[var(--primary)] text-[var(--primary)] hover:bg-[--primary-50] dark:border-[var(--primary)] dark:hover:bg-[var(--primary-700)]';
       case 'transparent':
-        return ' text-primary hover:bg-primary hover:text-white';
-
+        return 'text-[var(--primary)] hover:bg-[var(--primary-50)] hover:text-[var(--white)] dark:hover:bg-[var(--primary-700)] dark:hover:text-[var(--white)]';
       default:
-        return '';
+        return ''
     }
   }
 

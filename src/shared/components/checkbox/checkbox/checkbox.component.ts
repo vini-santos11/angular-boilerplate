@@ -18,33 +18,18 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 export class CheckboxComponent implements ControlValueAccessor {
   @Input() label?: string = 'Checkbox';
   @Input() labelPosition?: 'top' | 'right' | 'bottom' | 'left' = 'left';
-  @Input() labelColor?: 'primary' | 'secondary' | 'default' = 'default';
-  @Input() checkboxColor?: 'primary' | 'secondary' | 'default' = 'default';
-  @Input() checkboxSize?: 'small' | 'medium' | 'large' = 'medium';
+  @Input() checkboxColor?: 'primary' | 'default' = 'default';
+  @Input() size?: 'small' | 'medium' | 'large' = 'medium';
 
   checked: boolean = false;
   disabled: boolean = false;
   onChange: any = () => {};
   onTouched: any = () => {};
 
-  getLabelColorClass(): string {
-    switch (this.labelColor) {
-      case 'primary':
-        return 'text-primary';
-      case 'secondary':
-        return 'text-secondary';
-      case 'default':
-      default:
-        return 'text-gray-150';
-    }
-  }
-
   getCheckboxColorClass(): string {
     switch (this.checkboxColor) {
       case 'primary':
-        return this.checked ? 'bg-primary border-primary' : 'border-primary';
-      case 'secondary':
-        return this.checked ? 'bg-secondary border-secondary' : 'border-secondary';
+        return this.checked ? 'bg-[var(--primary)] border-[var(--primary)]' : 'border-[var(--primary)]';
       case 'default':
       default:
         return this.checked ? 'bg-gray-300 border-gray-300' : 'border-gray-300';
@@ -52,7 +37,7 @@ export class CheckboxComponent implements ControlValueAccessor {
   }
 
   getCheckboxSizeClass(): string {
-    switch (this.checkboxSize) {
+    switch (this.size) {
       case 'small':
         return 'w-4 h-4';
       case 'medium':

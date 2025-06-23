@@ -2,6 +2,8 @@ import { CommonModule } from '@angular/common';
 import { Component, ElementRef, EventEmitter, HostListener, inject, Output } from '@angular/core';
 import { LogOut, LucideAngularModule, Menu } from 'lucide-angular';
 import { LanguageService } from '../../../app/services/language.service';
+import { ThemeService } from '../../../app/services/theme.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-logged-header',
@@ -19,8 +21,11 @@ export class LoggedHeaderComponent {
 
   private languageService = inject(LanguageService);
   langs = this.languageService.langs;
+  currentTheme$: Observable<'light' | 'dark'>;
 
-  constructor(private eRef: ElementRef) { }
+  constructor(private eRef: ElementRef, private themeService: ThemeService) {
+    this.currentTheme$ = this.themeService.currentTheme$;
+  }
 
   handleClick() {
     this.clicked.emit();
@@ -36,6 +41,18 @@ export class LoggedHeaderComponent {
 
   setLang(lang: string) {
     this.languageService.changeLanguage(lang);
+  }
+
+  setLightTheme() {
+    this.themeService.setLightTheme();
+  }
+
+  setDarkTheme() {
+    this.themeService.setDarkTheme();
+  }
+
+  toggleTheme() {
+    this.themeService.currentTheme$.value === 'light' ? this.setDarkTheme() : this.setLightTheme();
   }
 
   @HostListener('document:click', ['$event'])

@@ -1,12 +1,18 @@
 <div
-  class="rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition p-4 md:p-6 w-full"
+  class="rounded-xl border border-[var(--border)] dark:border-[var(--border)] shadow-sm hover:shadow-md transition p-4 md:p-6 w-full"
   [ngClass]="[variantClasses, class]"
 >
   <div *ngIf="title || description" class="mb-4">
-    <h2 *ngIf="title" class="text-lg font-semibold text-black">
+    <h2
+      *ngIf="title"
+      class="text-lg font-semibold text-[var(--surface)] dark:text-[var(--surface)]"
+    >
       {{ title }}
     </h2>
-    <p *ngIf="description" class="text-sm text-gray-500 mt-1">
+    <p
+      *ngIf="description"
+      class="text-sm text-[var(--border)] dark:text-[var(--border)] mt-1"
+    >
       {{ description }}
     </p>
   </div>

@@ -3,7 +3,7 @@
 
   <span
     *ngIf="control?.invalid && (control?.touched || control?.dirty)"
-    class="text-sm text-red-500"
+    class="text-sm text-[var(--error)]"
   >
     {{ control?.errors | json }}
   </span>

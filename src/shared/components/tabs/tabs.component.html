@@ -1,10 +1,11 @@
-<div class="flex border-gray-200 w-full">
+<div class="flex border-[var(--border)] w-full">
   <div
     *ngFor="let tab of tabs; let idx = index"
     class="relative cursor-pointer px-6 py-3 text-sm font-medium uppercase transition-all duration-200 flex items-center gap-2"
     [ngClass]="{
-      'text-primary border-b-2 border-primary': idx === activeIndex,
-      'text-gray-500 hover:bg-gray-200': idx !== activeIndex
+      'text-[var(--primary)] border-b-2 border-[var(--primary)]':
+        idx === activeIndex,
+      'text-gray-500 hover:bg-[var(--border-50)]': idx !== activeIndex
     }"
     (click)="selectTab(idx)"
   >

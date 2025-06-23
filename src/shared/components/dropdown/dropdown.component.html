@@ -8,13 +8,13 @@
       *ngIf="label"
       class="text-sm font-bold"
       [ngClass]="{
-        'text-gray-400': disabled,
-        'text-gray-800': !disabled,
+        'text-[var(--border)]': disabled,
+        'text-[var(--text)]': !disabled,
         'cursor-not-allowed': disabled
       }"
     >
       {{ label }}
-      <span *ngIf="required" class="text-red-500">*</span>
+      <span *ngIf="required" class="text-[var(--error)]">*</span>
     </label>
   </div>
 
@@ -22,11 +22,11 @@
   <div
     class="flex items-center border rounded-lg p-2 shadow-sm min-h-[2.5rem] cursor-pointer transition-all duration-200 ease-in-out focus:outline-none"
     [ngClass]="{
-      'bg-white': !disabled,
-      'bg-gray-200': disabled,
+      'bg-[var(--surface)]': !disabled,
+      'bg-[var(--border)]': disabled,
       'cursor-not-allowed': disabled,
-      'border-primary ring-1 ring-primary': isOpen(),
-      'border-gray-300': !isOpen()
+      'border-[var(--primary)] ring-1 ring-[var(--primary)]': isOpen(),
+      'border-[var(--border)]': !isOpen()
     }"
     (click)="toggleDropdown()"
     tabindex="0"
@@ -61,12 +61,12 @@
     class="flex flex-wrap gap-2 mt-1 w-full"
   >
     <span
-      class="flex items-center bg-blue-100 text-blue-800 text-sm px-2 py-1 rounded-full max-w-full break-all"
+      class="flex items-center bg-[var(--primary-50)] text-[var(--primary)] text-sm px-2 py-1 rounded-full max-w-full break-all"
       *ngFor="let item of getMultipleSelectedList(); let i = index"
     >
       {{ getOptionLabel(item) }}
       <button
-        class="ml-1 text-xs text-blue-500 hover:text-red-500"
+        class="ml-1 text-xs text-[var(--primary)] hover:text-[var(--error)]"
         (click)="deselectItem(item); $event.stopPropagation()"
         type="button"
       >
@@ -78,29 +78,30 @@
   <!-- Campo de pesquisa + Lista de opções -->
   <div
     *ngIf="isOpen()"
-    class="absolute top-full left-0 mt-1 w-full bg-white border border-gray-300 rounded-lg z-10 shadow-lg"
+    class="absolute top-full left-0 mt-1 w-full bg-[var(--surface)] border border-[var(--border)] rounded-lg z-10 shadow-lg"
   >
     <!-- Barra de pesquisa -->
-    <div class="flex items-center px-3 py-2 border-b border-gray-200">
+    <div class="flex items-center px-3 py-2 border-b border-[var(--border)]">
       <lucide-icon [name]="Search" class="text-gray-400 mr-2" size="16" />
       <input
         type="text"
         [(ngModel)]="searchTerm"
-        class="flex-1 text-sm text-gray-800 outline-none"
+        class="flex-1 text-sm text-[var(--text)] outline-none bg-transparent"
         placeholder="{{ 'search' | translate }}"
       />
     </div>
 
     <!-- Lista de opções -->
-    <div class="max-h-60 overflow-y-auto divide-y divide-gray-200">
+    <div class="max-h-60 overflow-y-auto divide-y divide-[var(--border)]">
       <div
         *ngFor="let option of filteredOptions()"
         (click)="selectOption(option)"
         class="text-sm px-3 py-2 cursor-pointer transition-colors duration-150 rounded"
         [ngClass]="{
-          'bg-blue-100 text-blue-800': isSelected(option),
-          'hover:bg-primary/10 hover:text-primary': !isSelected(option),
-          'text-gray-800': !isSelected(option)
+          'bg-[var(--primary-50)] text-[var(--primary)]': isSelected(option),
+          'hover:bg-[var(--primary-50)] hover:text-[var(--primary)]':
+            !isSelected(option),
+          'text-[var(--text)]': !isSelected(option)
         }"
       >
         {{ getOptionLabel(option) }}
@@ -111,7 +112,7 @@
   <!-- Mensagem de erro -->
   <span
     *ngIf="control?.invalid && (control?.touched || control?.dirty)"
-    class="text-sm text-red-500"
+    class="text-sm text-[var(--error)]"
   >
     {{ getErrorMessage() }}
   </span>

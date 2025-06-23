@@ -1,15 +1,17 @@
 <div class="flex flex-col gap-1">
+  <!-- Label e Toggle de Password -->
   <div class="flex flex-row justify-between">
     <label
       *ngIf="label"
       class="text-sm font-bold"
       [ngClass]="{
-        'text-gray-400': disabled,
-        'text-gray-800': !disabled,
+        'text-[var(--border)]': disabled,
+        'text-[var(--text)]': !disabled,
         'cursor-not-allowed': disabled
       }"
     >
-      {{ label }} <span *ngIf="required" class="text-red-500">*</span>
+      {{ label }}
+      <span *ngIf="required" class="text-[var(--error)]">*</span>
     </label>
 
     <div
@@ -18,32 +20,35 @@
       (click)="togglePassword()"
     >
       <lucide-icon
-        class="text-primary mr-1"
+        class="text-[var(--primary)] mr-1"
         [img]="showPassword ? Eye : EyeOff"
         size="16"
       />
     </div>
   </div>
 
+  <!-- Input Wrapper -->
   <div
-    class="flex items-center border border-gray-300 rounded-lg p-2 shadow-sm focus-within:border-primary focus-within:ring-1 focus-within:ring-primary"
+    class="flex items-center border border-[var(--border)] rounded-lg p-2 shadow-sm focus-within:border-[var(--primary)] focus-within:ring-1 focus-within:ring-[var(--primary)]"
     [ngClass]="{
-      'bg-white': !disabled,
-      'bg-gray-200': disabled,
+      'bg-[var(--surface)]': !disabled,
+      'bg-[var(--border)]': disabled,
       'cursor-not-allowed': disabled
     }"
   >
+    <!-- Icon Left -->
     <ng-container *ngIf="isIconLeft">
-      <lucide-icon class="text-gray-300 mr-1" [img]="icon" />
-      <span class="text-gray-300 select-none mr-1">|</span>
+      <lucide-icon class="text-gray-400 mr-1" [img]="icon" />
+      <span class="text-gray-400 select-none mr-1">|</span>
     </ng-container>
 
+    <!-- Input -->
     <input
       #inputRef
-      class="flex-1 focus:outline-none text-sm text-gray-900 placeholder-gray-400"
+      class="flex-1 focus:outline-none text-sm placeholder-gray-400"
       [ngClass]="{
-        'bg-transparent': !disabled,
-        'bg-gray-200': disabled,
+        'bg-transparent text-gray-400': !disabled,
+        'bg-[var(--border)] text-gray-400': disabled,
         'cursor-not-allowed': disabled
       }"
       [attr.type]="type"
@@ -56,14 +61,17 @@
       (blur)="onBlur()"
     />
 
+    <!-- Icon Right -->
     <ng-container *ngIf="isIconRight">
-      <span class="text-gray-300 select-none ml-1">|</span>
-      <lucide-icon class="text-gray-300 ml-1" [img]="icon" />
+      <span class="text-gray-400 select-none ml-1">|</span>
+      <lucide-icon class="text-gray-400 ml-1" [img]="icon" />
     </ng-container>
   </div>
+
+  <!-- Error Message -->
   <span
     *ngIf="control?.invalid && (control?.touched || control?.dirty)"
-    class="text-sm text-red-500"
+    class="text-sm text-[var(--error)]"
   >
     {{ getErrorMessage() }}
   </span>

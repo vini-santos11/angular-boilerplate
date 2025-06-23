@@ -11,8 +11,8 @@
     *ngIf="label"
     class="text-sm font-bold"
     [ngClass]="{
-      'text-gray-800': !disabled,
-      'text-gray-400': disabled,
+      'text-[var(--text)]': !disabled,
+      'text-[var(--border)]': disabled,
       'cursor-not-allowed': disabled
     }"
     >{{ label }}</label
@@ -26,15 +26,15 @@
     (click)="setValue()"
     class="w-5 h-5 rounded-full border-2 transition-colors duration-200 ease-in-out flex items-center justify-center"
     [ngClass]="{
-      'border-primary': value === checkedValue,
-      'border-gray-400': value !== checkedValue,
+      'border-[var(--primary)]': value === checkedValue,
+      'border-[var(--border)]': value !== checkedValue,
       'cursor-not-allowed opacity-50': disabled
     }"
   >
     <div
       class="w-2.5 h-2.5 rounded-full transition-opacity duration-200"
       [ngClass]="{
-        'bg-primary opacity-100': value === checkedValue,
+        'bg-[var(--primary)] opacity-100': value === checkedValue,
         'opacity-0': value !== checkedValue
       }"
     ></div>

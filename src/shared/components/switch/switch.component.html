@@ -11,8 +11,8 @@
     *ngIf="label"
     class="text-sm font-bold"
     [ngClass]="{
-    'text-gray-800': !disabled,
-    'text-gray-400': disabled,
+    'text-[var(--text)]': !disabled,
+    'text-[var(--border)]': disabled,
     'cursor-not-allowed': disabled,
   }"
     >{{ label }}
@@ -28,8 +28,8 @@
     type="button"
     class="relative inline-flex h-6 w-11 items-center rounded-full transition-colors duration-200 ease-in-out"
     [ngClass]="{
-      'bg-primary': value,
-      'bg-gray-300': !value,
+      'bg-[var(--primary)]': value,
+      'bg-[var(--border)]': !value,
       'cursor-not-allowed': disabled,
     }"
   >
@@ -44,7 +44,7 @@
 </div>
 <span
   *ngIf="control?.invalid && (control?.touched || control?.dirty)"
-  class="text-sm text-red-500"
+  class="text-sm text-[var(--error)]"
 >
   {{ getErrorMessage() }}
 </span>

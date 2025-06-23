@@ -11,6 +11,7 @@
           [icon]="User"
           formControlName="name"
           [control]="form.get('name')"
+          [disabled]="true"
         />
 
         <div class="flex gap-4 mt-3 flex-wrap">
@@ -130,12 +131,11 @@
           />
           <app-checkbox
             label="Aceito os termos"
-            labelColor="primary"
             labelPosition="bottom"
             checkboxColor="primary"
-            checkboxSize="large"
+            size="medium"
           />
-          <!-- <app-radio-group
+          <app-radio-group
             formControlName="gender"
             [control]="form.get('gender')"
             labelPosition="right"
@@ -153,7 +153,7 @@
               [checkedValue]="'Outro'"
               label="Outro"
             ></app-radio-button>
-          </app-radio-group> -->
+          </app-radio-group>
         </div>
 
         <div

@@ -7,13 +7,17 @@
     'flex-row': labelPosition === 'left'
   }"
 >
-  <span *ngIf="label"
-    class="text-sm"
+  <span
+    *ngIf="label"
+    class="text-sm text-[var(--text)]"
     [ngClass]="[
-      getLabelColorClass(),
-      labelPosition === 'left' ? 'mb-0 ml-2' :
-      labelPosition === 'right' ? 'mb-0 mr-2' :
-      labelPosition === 'top' ? 'mb-1' : 'mt-1'
+      labelPosition === 'left'
+        ? 'mb-0 ml-2'
+        : labelPosition === 'right'
+        ? 'mb-0 mr-2'
+        : labelPosition === 'top'
+        ? 'mb-1'
+        : 'mt-1'
     ]"
   >
     {{ label }}

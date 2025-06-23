@@ -3,27 +3,27 @@
     *ngIf="label"
     class="text-sm font-bold"
     [ngClass]="{
-      'text-gray-400': disabled,
-      'text-gray-800': !disabled,
+      'text-[var(--border)]': disabled,
+      'text-[var(--text)]': !disabled,
       'cursor-not-allowed': disabled
     }"
   >
-    {{ label }} <span *ngIf="required" class="text-red-500">*</span>
+    {{ label }} <span *ngIf="required" class="text-[var(--error)]">*</span>
   </label>
 
   <div
-    class="flex items-center border border-gray-300 rounded-lg p-2 shadow-sm focus-within:border-primary focus-within:ring-1 focus-within:ring-primary"
+    class="flex items-center border border-[var(--border)] rounded-lg p-2 shadow-sm focus-within:border-[var(--primary)] focus-within:ring-1 focus-within:ring-[var(--primary)]"
     [ngClass]="{
-      'bg-white': !disabled,
-      'bg-gray-200': disabled,
+      'bg-[var(--surface)]': !disabled,
+      'bg-[var(--border)]': disabled,
       'cursor-not-allowed': disabled
     }"
   >
     <textarea
-      class="flex-1 focus:outline-none text-sm text-gray-900 placeholder-gray-400 resize-y min-h-[50px] max-h-[200px] overflow-y-auto"
+      class="flex-1 focus:outline-none text-sm text-[var(--text)] placeholder-gray-400 resize-y min-h-[50px] max-h-[200px] overflow-y-auto"
       [ngClass]="{
         'bg-transparent': !disabled,
-        'bg-gray-200': disabled,
+        'bg-[var(--border)]': disabled,
         'cursor-not-allowed': disabled
       }"
       [attr.placeholder]="placeholder"
@@ -35,7 +35,7 @@
   </div>
   <span
     *ngIf="control?.invalid && (control?.touched || control?.dirty)"
-    class="text-sm text-red-500"
+    class="text-sm text-[var(--error)]"
   >
     {{ getErrorMessage() }}
   </span>

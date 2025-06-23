@@ -15,6 +15,8 @@ import { CardComponent } from "../../../../shared/components/card/card.component
 import { BasePage } from '../../../helpers/base-page';
 import { TabItemComponent } from '../../../../shared/components/tabs/tab-item/tab-item.component';
 import { TabsComponent } from '../../../../shared/components/tabs/tabs.component';
+import { RadioButtonComponent } from '../../../../shared/components/radio-button/radio-button.component';
+import { RadioGroupComponent } from '../../../../shared/components/radio-group/radio-group.component';
 
 interface Option {
   id: number;
@@ -37,7 +39,9 @@ interface Option {
     CheckboxComponent,
     CardComponent,
     TabsComponent,
-    TabItemComponent
+    TabItemComponent,
+    RadioGroupComponent,
+    RadioButtonComponent
   ],
   templateUrl: './mv.component.html',
   styleUrl: './mv.component.css'

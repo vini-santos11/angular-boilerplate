@@ -1,6 +1,8 @@
-<header class="bg-white w-full flex justify-between items-center shadow-md">
+<header
+  class="bg-[var(--surface)] w-full flex justify-between items-center shadow-sm border-b border-[var(--border)]"
+>
   <button
-    class="ml-4 p-2 rounded bg-primary text-white"
+    class="ml-4 p-2 rounded bg-[var(--primary)] text-white"
     (click)="handleClick()"
   >
     <lucide-icon [img]="Menu" class="w-5 h-5" />
@@ -15,43 +17,92 @@
 
   <div class="relative mr-4">
     <button
-      class="flex items-center gap-3 hover:bg-gray-200 px-3 py-2 rounded-lg transition"
+      class="flex items-center gap-3 hover:bg-[var(--border-50)] px-3 py-2 rounded-lg transition"
       (click)="toggleProfileMenu()"
     >
-      <span class="text-sm font-medium hidden sm:inline">Marcus Vinícius</span>
+      <span class="text-sm font-medium hidden sm:inline text-[var(--text)]"
+        >Marcus Vinícius</span
+      >
       <img class="h-9 w-9 rounded-full" [src]="image" />
     </button>
 
     <div
       *ngIf="showProfileMenu"
-      class="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-lg shadow-lg z-50"
+      class="absolute right-0 mt-2 w-36 bg-[var(--surface)] border border-[var(--border)] rounded-lg shadow-lg z-50"
     >
       <button
-        class="w-full flex items-center gap-2 px-4 py-2 text-sm hover:bg-gray-100 text-left"
+        class="w-full flex items-center gap-2 px-3 py-1.5 text-sm hover:bg-[var(--border-50)] text-left text-[var(--text)]"
         (click)="logout()"
       >
         <lucide-icon [img]="LogOut" class="w-4 h-4" />
         Sair
       </button>
 
-      <div class="flex justify-end m-2 gap-1">
-        <button (click)="setLang('pt')">
-          <img
-            src="/assets/images/brazil.png"
-            width="24"
-            height="16"
-            alt="Português"
-          />
-        </button>
+      <!-- theme selection -->
+      <div class="border-t border-[var(--border)]"></div>
+      <div class="p-2 space-y-2">
+        <div class="flex justify-end">
+          <div
+            class="relative flex h-8 w-14 cursor-pointer items-center justify-between rounded-full bg-[var(--border-50)] p-1"
+            (click)="toggleTheme()"
+          >
+            <!-- Sliding Handle -->
+            <div
+              class="absolute top-1 left-1 h-6 w-6 rounded-full bg-[var(--surface)] shadow-md transition-transform duration-300 ease-in-out"
+              [ngClass]="{
+                'translate-x-0': (currentTheme$ | async) === 'light',
+                'translate-x-[24px]': (currentTheme$ | async) === 'dark'
+              }"
+            ></div>
 
-        <button (click)="setLang('en')">
-          <img
-            src="/assets/images/uk.png"
-            width="24"
-            height="16"
-            alt="English"
-          />
-        </button>
+            <!-- Icons -->
+            <div class="flex h-6 w-6 items-center justify-center">
+              <img
+                src="/assets/images/sun.png"
+                width="16"
+                height="16"
+                alt="Light Theme"
+                class="z-10 transition-opacity"
+                [ngClass]="{
+                  'opacity-100': (currentTheme$ | async) === 'light',
+                  'opacity-50': (currentTheme$ | async) === 'dark'
+                }"
+              />
+            </div>
+            <div class="flex h-6 w-6 items-center justify-center">
+              <img
+                src="/assets/images/moon.png"
+                width="16"
+                height="16"
+                alt="Dark Theme"
+                class="z-10 transition-opacity"
+                [ngClass]="{
+                  'opacity-100': (currentTheme$ | async) === 'dark',
+                  'opacity-50': (currentTheme$ | async) === 'light'
+                }"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="flex justify-end gap-1">
+          <button (click)="setLang('pt')">
+            <img
+              src="/assets/images/brazil.png"
+              width="24"
+              height="16"
+              alt="Português"
+            />
+          </button>
+
+          <button (click)="setLang('en')">
+            <img
+              src="/assets/images/uk.png"
+              width="24"
+              height="16"
+              alt="English"
+            />
+          </button>
+        </div>
       </div>
     </div>
   </div>

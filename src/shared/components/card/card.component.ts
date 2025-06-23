@@ -16,15 +16,15 @@ export class CardComponent {
   get variantClasses() {
     switch (this.variant) {
       case 'outline':
-        return 'border border-gray-200 bg-white';
+        return 'border border-[var(--border)] dark:border-[var(--border)] bg-[var(--surface)] dark:bg-[var(--surface)]';
       case 'flat':
-        return 'bg-white';
+        return 'bg-[var(--surface)] dark:bg-[var(--surface)]';
       case 'ghost':
         return 'bg-transparent';
       case 'soft':
-        return 'bg-primary-50';
+        return 'bg-[var(--color-primary-50)] dark:bg-[var(--color-primary-700)]';
       default:
-        return 'border border-gray-200 bg-white shadow-sm hover:shadow-md transition';
+        return 'border border-[var(--border)] dark:border-[var(--border)] bg-[var(--surface)] dark:bg-[var(--surface)] shadow-sm hover:shadow-md transition';
     }
   }
 }

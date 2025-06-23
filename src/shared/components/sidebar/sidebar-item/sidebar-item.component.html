@@ -1,8 +1,11 @@
 <a
   *ngIf="!hasChildren"
-  class="flex items-center gap-3 px-1 py-2 rounded-lg hover:bg-primary-200 text-sm transition"
+  class="flex items-center gap-3 px-1 py-2 rounded-lg text-sm transition"
   [routerLink]="routerLink"
-  routerLinkActive="bg-primary-600"
+  [ngClass]="{
+    'bg-[var(--primary-200)]': isActive,
+    'hover:bg-[var(--primary-200)]': !isActive
+  }"
 >
   <lucide-icon *ngIf="icon" [name]="icon" class="w-5 h-5" />
   <span
@@ -15,7 +18,11 @@
 <div *ngIf="hasChildren">
   <button
     (click)="toggle()"
-    class="flex items-center justify-between w-full px-1 py-2 rounded-lg hover:bg-primary-200 text-sm transition"
+    class="flex items-center justify-between w-full px-1 py-2 rounded-lg text-sm transition"
+    [ngClass]="{
+      'bg-[var(--primary-200)]': isActive,
+      'hover:bg-[var(--primary-200)]': !isActive
+    }"
   >
     <div class="flex items-center gap-3">
       <lucide-icon *ngIf="icon" [img]="icon" class="w-5 h-5" />
